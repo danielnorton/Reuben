@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9BC06C5C1AD8DC6400829E1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC06C5B1AD8DC6400829E1F /* AppDelegate.swift */; };
+		9BC06C5E1AD8DC6400829E1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC06C5D1AD8DC6400829E1F /* ViewController.swift */; };
+		9BC06C611AD8DC6400829E1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C5F1AD8DC6400829E1F /* Main.storyboard */; };
+		9BC06C631AD8DC6400829E1F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C621AD8DC6400829E1F /* Images.xcassets */; };
+		9BC06C661AD8DC6400829E1F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C641AD8DC6400829E1F /* LaunchScreen.xib */; };
+		9BC06C721AD8DC6400829E1F /* ReubenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC06C711AD8DC6400829E1F /* ReubenTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9BC06C6C1AD8DC6400829E1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9BC06C4E1AD8DC6400829E1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9BC06C551AD8DC6400829E1F;
+			remoteInfo = Reuben;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9BC06C561AD8DC6400829E1F /* Reuben.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reuben.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BC06C5A1AD8DC6400829E1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BC06C5B1AD8DC6400829E1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9BC06C5D1AD8DC6400829E1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9BC06C601AD8DC6400829E1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9BC06C621AD8DC6400829E1F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9BC06C651AD8DC6400829E1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9BC06C6B1AD8DC6400829E1F /* ReubenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReubenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BC06C701AD8DC6400829E1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BC06C711AD8DC6400829E1F /* ReubenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReubenTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9BC06C531AD8DC6400829E1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BC06C681AD8DC6400829E1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9BC06C4D1AD8DC6400829E1F = {
+			isa = PBXGroup;
+			children = (
+				9BC06C581AD8DC6400829E1F /* Reuben */,
+				9BC06C6E1AD8DC6400829E1F /* ReubenTests */,
+				9BC06C571AD8DC6400829E1F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9BC06C571AD8DC6400829E1F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9BC06C561AD8DC6400829E1F /* Reuben.app */,
+				9BC06C6B1AD8DC6400829E1F /* ReubenTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9BC06C581AD8DC6400829E1F /* Reuben */ = {
+			isa = PBXGroup;
+			children = (
+				9BC06C5B1AD8DC6400829E1F /* AppDelegate.swift */,
+				9BC06C5D1AD8DC6400829E1F /* ViewController.swift */,
+				9BC06C5F1AD8DC6400829E1F /* Main.storyboard */,
+				9BC06C621AD8DC6400829E1F /* Images.xcassets */,
+				9BC06C641AD8DC6400829E1F /* LaunchScreen.xib */,
+				9BC06C591AD8DC6400829E1F /* Supporting Files */,
+			);
+			path = Reuben;
+			sourceTree = "<group>";
+		};
+		9BC06C591AD8DC6400829E1F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9BC06C5A1AD8DC6400829E1F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9BC06C6E1AD8DC6400829E1F /* ReubenTests */ = {
+			isa = PBXGroup;
+			children = (
+				9BC06C711AD8DC6400829E1F /* ReubenTests.swift */,
+				9BC06C6F1AD8DC6400829E1F /* Supporting Files */,
+			);
+			path = ReubenTests;
+			sourceTree = "<group>";
+		};
+		9BC06C6F1AD8DC6400829E1F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9BC06C701AD8DC6400829E1F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9BC06C551AD8DC6400829E1F /* Reuben */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BC06C751AD8DC6400829E1F /* Build configuration list for PBXNativeTarget "Reuben" */;
+			buildPhases = (
+				9BC06C521AD8DC6400829E1F /* Sources */,
+				9BC06C531AD8DC6400829E1F /* Frameworks */,
+				9BC06C541AD8DC6400829E1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Reuben;
+			productName = Reuben;
+			productReference = 9BC06C561AD8DC6400829E1F /* Reuben.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9BC06C6A1AD8DC6400829E1F /* ReubenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BC06C781AD8DC6400829E1F /* Build configuration list for PBXNativeTarget "ReubenTests" */;
+			buildPhases = (
+				9BC06C671AD8DC6400829E1F /* Sources */,
+				9BC06C681AD8DC6400829E1F /* Frameworks */,
+				9BC06C691AD8DC6400829E1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9BC06C6D1AD8DC6400829E1F /* PBXTargetDependency */,
+			);
+			name = ReubenTests;
+			productName = ReubenTests;
+			productReference = 9BC06C6B1AD8DC6400829E1F /* ReubenTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9BC06C4E1AD8DC6400829E1F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Daniel Norton";
+				TargetAttributes = {
+					9BC06C551AD8DC6400829E1F = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					9BC06C6A1AD8DC6400829E1F = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 9BC06C551AD8DC6400829E1F;
+					};
+				};
+			};
+			buildConfigurationList = 9BC06C511AD8DC6400829E1F /* Build configuration list for PBXProject "Reuben" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9BC06C4D1AD8DC6400829E1F;
+			productRefGroup = 9BC06C571AD8DC6400829E1F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9BC06C551AD8DC6400829E1F /* Reuben */,
+				9BC06C6A1AD8DC6400829E1F /* ReubenTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9BC06C541AD8DC6400829E1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BC06C611AD8DC6400829E1F /* Main.storyboard in Resources */,
+				9BC06C661AD8DC6400829E1F /* LaunchScreen.xib in Resources */,
+				9BC06C631AD8DC6400829E1F /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BC06C691AD8DC6400829E1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9BC06C521AD8DC6400829E1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BC06C5E1AD8DC6400829E1F /* ViewController.swift in Sources */,
+				9BC06C5C1AD8DC6400829E1F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BC06C671AD8DC6400829E1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BC06C721AD8DC6400829E1F /* ReubenTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9BC06C6D1AD8DC6400829E1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9BC06C551AD8DC6400829E1F /* Reuben */;
+			targetProxy = 9BC06C6C1AD8DC6400829E1F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9BC06C5F1AD8DC6400829E1F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BC06C601AD8DC6400829E1F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9BC06C641AD8DC6400829E1F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BC06C651AD8DC6400829E1F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9BC06C731AD8DC6400829E1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9BC06C741AD8DC6400829E1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9BC06C761AD8DC6400829E1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Reuben/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9BC06C771AD8DC6400829E1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Reuben/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9BC06C791AD8DC6400829E1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ReubenTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reuben.app/Reuben";
+			};
+			name = Debug;
+		};
+		9BC06C7A1AD8DC6400829E1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ReubenTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reuben.app/Reuben";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9BC06C511AD8DC6400829E1F /* Build configuration list for PBXProject "Reuben" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BC06C731AD8DC6400829E1F /* Debug */,
+				9BC06C741AD8DC6400829E1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9BC06C751AD8DC6400829E1F /* Build configuration list for PBXNativeTarget "Reuben" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BC06C761AD8DC6400829E1F /* Debug */,
+				9BC06C771AD8DC6400829E1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9BC06C781AD8DC6400829E1F /* Build configuration list for PBXNativeTarget "ReubenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BC06C791AD8DC6400829E1F /* Debug */,
+				9BC06C7A1AD8DC6400829E1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9BC06C4E1AD8DC6400829E1F /* Project object */;
+}
