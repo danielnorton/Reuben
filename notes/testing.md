@@ -3,7 +3,7 @@
 I got started with Objective-C in 2008. Back then, Google was kind enough to make the [Google Toolbox for Mac](https://code.google.com/p/google-toolbox-for-mac/wiki/iPhoneUnitTesting) which included some rudimentary unit testing tools. They didn't really work (for me, anyway) all that well. So we barreled forward with what we had. The story is different now, and has been since Xcode 5 with [XCTest](https://developer.apple.com/library/prerelease/ios/documentation/DeveloperTools/Conceptual/testing_with_xcode/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014132). Mea culpa, I haven't done a great job embracing and really stretching my unit testing skills in Xcode. Here's a greenfield in which to change that. In fact, that's really where this project is starting. At the hash of this writing, I don't have any 'actual' functionality in the app, but I do have a few classes of tests. The first one is just to test hitting the [github API](https://developer.github.com/v3/).
 
 ###Asynchronous Test###
-Here's about the most simple one from [apiSimpleTests.swift](https://github.com/danielnorton/Reuben/blob/1161c1ea0d802394e0ad3d8e03849a0343fb9d25/source/ReubenTests/apiSimpleTests.swift). The salient bits here are the waitHandler and waitForExpectationsWithTimeout that coordinate to 'pass' the async web request.
+Here's about the most simple one from [apiSimpleTests.swift](https://github.com/danielnorton/Reuben/blob/1161c1ea0d802394e0ad3d8e03849a0343fb9d25/source/ReubenTests/apiSimpleTests.swift#L14). The salient bits here are the waitHandler and waitForExpectationsWithTimeout that coordinate to 'pass' the async web request.
 
 	func testGetUserGeneric() {
     
