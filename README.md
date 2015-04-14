@@ -8,7 +8,7 @@ The project is currently being written using Xcode 6.3 and runs on iOS 8.3+. Oth
 
 ## Inspiration ##
 
-This project is a playground; free from constraints applied to "real" work and projects. There are a number of newer (iOS 7+) features that I would like to experiment with in a safe environment. Also, I figure while I am at it I could try to put something together that could possibly be useful to the community.
+This project is a playground; free from constraints applied to "real" work and projects. There are a number of newer (iOS 7+) features that I would like to experiment with in a safe environment. Also, I figure while I am at it I could try to put something together that could possibly be useful to the community. I want to document my discoveries and failures along this process.
 
 So, here are a few of my goals and technologies in which I am currently interested (in no particular order):
 
@@ -19,6 +19,10 @@ So, here are a few of my goals and technologies in which I am currently interest
 *	**Background process**
 
 	Move as much as possible off the main UI thread, including Core Data updates
+	
+*	**[Internal Decoupling](notes/internal decoupling.md)**
+
+	
 	
 *	**Security**
 
