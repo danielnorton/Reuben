@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B0E4BFB1AD8DE84003CE247 /* apiSimpleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0E4BFA1AD8DE84003CE247 /* apiSimpleTests.swift */; };
+		9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A2F641AE8B66A00DCF867 /* ToolsViewController.swift */; };
 		9B72F4911ADCCC46008978E3 /* credentialStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B72F4901ADCCC46008978E3 /* credentialStoreTests.swift */; };
 		9B72F4951ADCCE36008978E3 /* CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B72F4941ADCCE36008978E3 /* CredentialStore.swift */; };
 		9B72F4971ADCD166008978E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B72F4961ADCD166008978E3 /* Security.framework */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		9B0E4BFA1AD8DE84003CE247 /* apiSimpleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = apiSimpleTests.swift; sourceTree = "<group>"; };
+		9B5A2F641AE8B66A00DCF867 /* ToolsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
 		9B72F4901ADCCC46008978E3 /* credentialStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = credentialStoreTests.swift; sourceTree = "<group>"; };
 		9B72F4941ADCCE36008978E3 /* CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialStore.swift; sourceTree = "<group>"; };
 		9B72F4961ADCD166008978E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -61,6 +63,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B5A2F621AE8B19500DCF867 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				9B72F4961ADCD166008978E3 /* Security.framework */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		9B5A2F631AE8B4A400DCF867 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9B5A2F641AE8B66A00DCF867 /* ToolsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		9B72F4931ADCCE15008978E3 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,9 +90,9 @@
 		9BC06C4D1AD8DC6400829E1F = {
 			isa = PBXGroup;
 			children = (
-				9B72F4961ADCD166008978E3 /* Security.framework */,
 				9BC06C581AD8DC6400829E1F /* Reuben */,
 				9BC06C6E1AD8DC6400829E1F /* ReubenTests */,
+				9B5A2F621AE8B19500DCF867 /* Libraries */,
 				9BC06C571AD8DC6400829E1F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,12 +109,13 @@
 		9BC06C581AD8DC6400829E1F /* Reuben */ = {
 			isa = PBXGroup;
 			children = (
+				9BC06C591AD8DC6400829E1F /* Supporting Files */,
+				9B5A2F631AE8B4A400DCF867 /* Controllers */,
 				9B72F4931ADCCE15008978E3 /* Service */,
+				9BC06C621AD8DC6400829E1F /* Images.xcassets */,
 				9BC06C5B1AD8DC6400829E1F /* AppDelegate.swift */,
 				9BC06C5F1AD8DC6400829E1F /* Main.storyboard */,
-				9BC06C621AD8DC6400829E1F /* Images.xcassets */,
 				9BC06C641AD8DC6400829E1F /* LaunchScreen.xib */,
-				9BC06C591AD8DC6400829E1F /* Supporting Files */,
 			);
 			path = Reuben;
 			sourceTree = "<group>";
@@ -227,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */,
 				9B72F4951ADCCE36008978E3 /* CredentialStore.swift in Sources */,
 				9BC06C5C1AD8DC6400829E1F /* AppDelegate.swift in Sources */,
 			);
