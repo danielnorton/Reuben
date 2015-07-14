@@ -95,7 +95,7 @@ public class CredentialStore: NSObject {
         ? secReturnAttributes
         : secReturnData
         
-        var query: Dictionary<String, AnyObject> = [
+        let query: Dictionary<String, AnyObject> = [
             secClass : secClassGenericPassword,
             secAttrAccount: userName,
             secAttrService: serviceName,

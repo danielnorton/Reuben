@@ -24,17 +24,22 @@ class apiSimpleTests: XCTestCase {
             if (error == nil) {
                 
                 XCTAssertNotNil(data)
-                if let rawJson = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? Dictionary<String, AnyObject> {
+
+                do {
+
+                    if let _ = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? Dictionary<String, AnyObject> {
+                        
+                        waitHandler.fulfill()
+                    }
                     
-                    waitHandler.fulfill()
-                }
+                } catch { }
             }
         }
         
-        task.resume()
+        task!.resume()
         self.waitForExpectationsWithTimeout(5.0, handler: nil)
     }
-    
+
     func testGetOrganizationsGeneric() {
         
         let waitHandler = self.expectationWithDescription(__FUNCTION__)
@@ -48,14 +53,19 @@ class apiSimpleTests: XCTestCase {
             if (error == nil) {
                 
                 XCTAssertNotNil(data)
-                if let rawJson = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? Array<String> {
+                
+                do {
                     
-                    waitHandler.fulfill()
-                }
+                    if let _ = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? Array<String> {
+                        
+                        waitHandler.fulfill()
+                    }
+                    
+                } catch { }
             }
         }
         
-        task.resume()
+        task!.resume()
         self.waitForExpectationsWithTimeout(5.0, handler: nil)
     }
     
@@ -72,14 +82,19 @@ class apiSimpleTests: XCTestCase {
             if (error == nil) {
                 
                 XCTAssertNotNil(data)
-                if let rawJson = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? Array<Dictionary<String, AnyObject>> {
+                
+                do {
                     
-                    waitHandler.fulfill()
-                }
+                    if let _ = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? Array<Dictionary<String, AnyObject>> {
+                        
+                        waitHandler.fulfill()
+                    }
+                    
+                } catch { }
             }
         }
         
-        task.resume()
+        task!.resume()
         self.waitForExpectationsWithTimeout(5.0, handler: nil)
     }
 }

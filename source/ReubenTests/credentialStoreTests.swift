@@ -59,7 +59,7 @@ class credentialStoreTests: XCTestCase {
         
         let service = CredentialStore()
         service.remove(readName, serviceName: serviceName)
-        if let answer = service.read(readName, serviceName: serviceName) {
+        if let _ = service.read(readName, serviceName: serviceName) {
             
             XCTAssert(false, "Didn't remove credential")
         }
