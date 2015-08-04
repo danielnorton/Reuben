@@ -16,12 +16,17 @@ Here's about the most simple one from [apiSimpleTests.swift](https://github.com/
 	    let task = session.dataTaskWithURL(url) { (data, _, error) -> Void in
         
 	        if (error == nil) {
-            
-	            XCTAssertNotNil(data)
-	            if let rawJson = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? Dictionary<String, AnyObject> {
+				
+                XCTAssertNotNil(data)
                 
-	                waitHandler.fulfill()
-	            }
+                do {
+                    
+                    if let _ = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? Array<String> {
+                        
+                        waitHandler.fulfill()
+                    }
+                    
+                } catch { }
 	        }
 	    }
     
