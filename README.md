@@ -12,7 +12,7 @@ This project is a playground; free from constraints applied to "real" work and p
 
 So, here are a few of my goals and technologies in which I am currently interested (in no particular order):
 
-*	**[Background data refresh](notes/background.md)**
+*	**[Background data refresh](docs/background.md)**
 	
 	I am very interested in utilizing the OS correctly to make a seamless experience for the user to pull their phone out of their pocket and always expect the data to be up to date. Things like transitioning to NSURLSession from NSURLConnection, background fetch, "headless" notifications
 	
@@ -20,7 +20,7 @@ So, here are a few of my goals and technologies in which I am currently interest
 
 	Move as much as possible off the main UI thread, including Core Data updates
 	
-*	**[Internal Decoupling](notes/internal decoupling.md)**
+*	**[Internal Decoupling](docs/internal decoupling.md)**
 
 	
 	
@@ -32,6 +32,6 @@ So, here are a few of my goals and technologies in which I am currently interest
 
 	No time or calories to transition existing Obj-C code to Swift during the day. So sad. Also, want to play in this sandbox before risking performance issues in real apps
 
-*	**[Unit testing](notes/testing.md)**
+*	**[Unit testing](docs/testing.md)**
 
 	 I just want to up my unit testing game. Things are certainly better than they were back at the beginning, and there are a few things about testing Swift that are different than testing Objective-C.

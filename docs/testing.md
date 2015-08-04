@@ -71,5 +71,7 @@ Here's an oversimplified view controller. You may notice that it was necessary t
 
 ##Resources##
 
-*	[WWDC 2014 - 414: Testing in Xcode 6](https://developer.apple.com/videos/wwdc/2014)
-*	[Testing with Xcode](https://developer.apple.com/library/prerelease/ios/documentation/DeveloperTools/Conceptual/testing_with_xcode/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014132)
+*	[WWDC 2015 - 106: What's New in Swift](https://developer.apple.com/videos/wwdc/2015/?id=106)
+*	[WWDC 2015 - 406: UI Testing in Xcode](https://developer.apple.com/videos/wwdc/2015/?id=406)
+*	[WWDC 2014 - 414: Testing in Xcode 6](https://developer.apple.com/videos/wwdc/2014/?id=414)
+*	[Testing with Xcode](https://developer.apple.com/library/ios/documentation/DeveloperTools/Conceptual/testing_with_xcode/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014132)

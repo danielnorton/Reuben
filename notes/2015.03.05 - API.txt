@@ -1,8 +1,0 @@
-curl -i https://api.github.com/users/octocat
-
-curl -i https://api.github.com/users/octocat/orgs
-
-curl -i https://api.github.com/users/octocat/repos
-
-
-curl -i https://api.github.com/repos/octocat/git-consortium/git/trees
