@@ -28,10 +28,10 @@ So, here are a few of my goals and technologies in which I am currently interest
 
 	Keychain access, fingerprint scanner, access to the keychain while the app is backgrounded or device is locked
 
-*	**Swift 1.2+**
+*	**Swift 2+**
 
 	No time or calories to transition existing Obj-C code to Swift during the day. So sad. Also, want to play in this sandbox before risking performance issues in real apps
 
-*	**[Unit testing](docs/testing.md)**
+*	**[Testing](docs/testing.md)**
 
-	 I just want to up my unit testing game. Things are certainly better than they were back at the beginning, and there are a few things about testing Swift that are different than testing Objective-C.
+	 I just want to up my testing game. Things are certainly better than they were back at the beginning, and there are a few things about testing Swift that are different than testing Objective-C.

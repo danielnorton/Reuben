@@ -16,6 +16,7 @@
 		9BC06C611AD8DC6400829E1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C5F1AD8DC6400829E1F /* Main.storyboard */; };
 		9BC06C631AD8DC6400829E1F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C621AD8DC6400829E1F /* Images.xcassets */; };
 		9BC06C661AD8DC6400829E1F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C641AD8DC6400829E1F /* LaunchScreen.xib */; };
+		9BFA46C71B71397800CA4884 /* ToolsViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		9BC06C651AD8DC6400829E1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9BC06C6B1AD8DC6400829E1F /* ReubenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReubenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC06C701AD8DC6400829E1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsViewControllerUnitTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				9BC06C6F1AD8DC6400829E1F /* Supporting Files */,
 				9B0E4BFA1AD8DE84003CE247 /* apiSimpleTests.swift */,
 				9B72F4901ADCCC46008978E3 /* credentialStoreTests.swift */,
+				9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */,
 			);
 			path = ReubenTests;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BFA46C71B71397800CA4884 /* ToolsViewControllerUnitTests.swift in Sources */,
 				9B72F4911ADCCC46008978E3 /* credentialStoreTests.swift in Sources */,
 				9B0E4BFB1AD8DE84003CE247 /* apiSimpleTests.swift in Sources */,
 			);
