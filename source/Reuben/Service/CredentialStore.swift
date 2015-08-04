@@ -31,9 +31,9 @@ public class CredentialStore: NSObject {
         self.find(userName
             , serviceName: serviceName
             , attributes: true
-            , foundAction: { (answer: Unmanaged<AnyObject>) -> Void in
+            , foundAction: { (answer: AnyObject) -> Void in
 
-                var change: Dictionary<String, AnyObject> = answer.takeRetainedValue() as! Dictionary<String, AnyObject>
+                var change: Dictionary<String, AnyObject> = answer as! Dictionary<String, AnyObject>
                 change.updateValue(self.secClassGenericPassword, forKey: self.secClass)
                 
                 let changeData = [self.secValueData: data!]
@@ -57,9 +57,9 @@ public class CredentialStore: NSObject {
         self.find(userName
             , serviceName: serviceName
             , attributes: false
-            , foundAction: { (answer: Unmanaged<AnyObject>) -> Void in
+            , foundAction: { (answer: AnyObject) -> Void in
 
-                let data = answer.takeRetainedValue() as! NSData
+                let data = answer as! NSData
                 password = NSString(data: data, encoding: NSUTF8StringEncoding)
                 
         }, notFoundAction: nil)
@@ -72,9 +72,9 @@ public class CredentialStore: NSObject {
         self.find(userName
             , serviceName: serviceName
             , attributes: true
-            , foundAction: { (answer: Unmanaged<AnyObject>) -> Void in
+            , foundAction: { (answer: AnyObject) -> Void in
                 
-                var change: Dictionary<String, AnyObject> = answer.takeRetainedValue() as! Dictionary<String, AnyObject>
+                var change: Dictionary<String, AnyObject> = answer as! Dictionary<String, AnyObject>
                 change.updateValue(self.secClassGenericPassword, forKey: self.secClass)
                 
                 SecItemDelete(change)
@@ -87,38 +87,41 @@ public class CredentialStore: NSObject {
     func find(userName: String
         , serviceName: String
         , attributes: Bool
-        , foundAction: ((Unmanaged<AnyObject>) -> Void)?
+        , foundAction: ((AnyObject) -> Void)?
         , notFoundAction: ((Dictionary<String, AnyObject>) -> Void)?
         ) {
 
-        let returnKey = attributes
-        ? secReturnAttributes
-        : secReturnData
+            let returnKey = attributes
+                ? secReturnAttributes
+                : secReturnData
         
-        let query: Dictionary<String, AnyObject> = [
-            secClass : secClassGenericPassword,
-            secAttrAccount: userName,
-            secAttrService: serviceName,
-            secMatchCaseInsensitive: kCFBooleanTrue,
-            returnKey: kCFBooleanTrue
-        ]
-        
-        var found: Unmanaged<AnyObject>?
-        let err = SecItemCopyMatching(query, &found)
-        if (err == noErr) {
+            let query: Dictionary<String, AnyObject> = [
+                secClass : secClassGenericPassword,
+                secAttrAccount: userName,
+                secAttrService: serviceName,
+                secMatchCaseInsensitive: kCFBooleanTrue,
+                returnKey: kCFBooleanTrue
+            ]
             
-            if let action = foundAction, answer = found  {
-
-                action(answer)
-            }
             
-        } else {
-            
-            if let action = notFoundAction {
+            var found: UnsafeMutablePointer<AnyObject?> = UnsafeMutablePointer<AnyObject?>(nilLiteral: ())
+            let err: OSStatus = withUnsafeMutablePointer(&found) { SecItemCopyMatching(query, UnsafeMutablePointer($0)) }
+            if (err == noErr) {
                 
-                action(query)
+                let unwrap = Unmanaged<AnyObject>.fromOpaque(COpaquePointer(found))
+                let answer = unwrap.takeRetainedValue() as AnyObject
+                if let action = foundAction  {
+                    
+                    action(answer)
+                }
+                
+            } else {
+                
+                if let action = notFoundAction {
+                    
+                    action(query)
+                }
             }
-        }
     }
 }
 

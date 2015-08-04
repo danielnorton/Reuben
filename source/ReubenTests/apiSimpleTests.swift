@@ -36,7 +36,7 @@ class apiSimpleTests: XCTestCase {
             }
         }
         
-        task!.resume()
+        task.resume()
         self.waitForExpectationsWithTimeout(5.0, handler: nil)
     }
 
@@ -65,7 +65,7 @@ class apiSimpleTests: XCTestCase {
             }
         }
         
-        task!.resume()
+        task.resume()
         self.waitForExpectationsWithTimeout(5.0, handler: nil)
     }
     
@@ -94,7 +94,7 @@ class apiSimpleTests: XCTestCase {
             }
         }
         
-        task!.resume()
+        task.resume()
         self.waitForExpectationsWithTimeout(5.0, handler: nil)
     }
 }
