@@ -10,7 +10,7 @@ import UIKit
 import XCTest
 import Reuben
 
-class credentialStoreTests: XCTestCase {
+class CredentialStoreTests: XCTestCase {
 
     let readName = "readUser"
     let writeName = "writeUser"

@@ -12,5 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    // MARK: - UIApplicationDelegate
+    func applicationDidEnterBackground(application: UIApplication) {
+        
+        print("applicationDidEnterBackground")
+    }
+    
+    func applicationWillEnterForeground(application: UIApplication) {
+        
+        print("applicationWillEnterForeground")
+    }
 }
 
