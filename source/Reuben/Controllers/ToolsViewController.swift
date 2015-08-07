@@ -42,4 +42,50 @@ class ToolsViewController: UICollectionViewController {
         cell.backgroundColor = UIColor.greenColor()
         return cell
     }
+    
+    
+    // MARK: - ToolsViewController
+    @IBAction func didTapTestDownload(sender: UIBarButtonItem) {
+
+//        let url = NSURL(string: "https://developer.apple.com/library/ios/samplecode/MetalVideoCapture/MetalVideoCapture.zip")!
+        let url = NSURL(string: "https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.pdf")!
+        let (session, delegate) = BackgroundSessionDelegate.structuresForUrl(url)
+        delegate.completion = {(task: NSURLSessionDownloadTask, url: NSURL) in
+            
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+            if let fileName = task.originalRequest?.URL?.lastPathComponent {
+                
+                let newName = documentsPath.stringByAppendingPathComponent(fileName)
+                let newUrl = NSURL(fileURLWithPath: newName)
+                let mgr = NSFileManager()
+                
+                if mgr.fileExistsAtPath(newName) {
+                    
+                    do {
+                        
+                        try mgr.removeItemAtURL(newUrl)
+                        
+                    } catch { }
+                }
+                
+                do {
+                    
+                    try mgr.moveItemAtURL(url, toURL: newUrl)
+                    print("\(NSDate()) - finish \(url.absoluteString) - \(newUrl.absoluteString)")
+                    
+                } catch {
+                    
+                    print("\(NSDate()) - 😨😨😨 FAILED!! Moving \(url.absoluteString) to \(newUrl.absoluteString)")
+                    
+                }
+            }
+        }
+        
+        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 30)
+        
+        let task = session.downloadTaskWithRequest(request)
+        
+        print("\(NSDate()) - start \(url.host!)")
+        task.resume()
+    }
 }

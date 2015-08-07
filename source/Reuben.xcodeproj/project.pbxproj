@@ -18,7 +18,6 @@
 		9BC06C661AD8DC6400829E1F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C641AD8DC6400829E1F /* LaunchScreen.xib */; };
 		9BFA46C71B71397800CA4884 /* ToolsViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */; };
 		9BFA46C91B71D31B00CA4884 /* APIBackgroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46C81B71D31B00CA4884 /* APIBackgroundTests.swift */; };
-		9BFA46CB1B71D3EC00CA4884 /* DownloadSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46CA1B71D3EC00CA4884 /* DownloadSessionDelegate.swift */; };
 		9BFA46CF1B729E9D00CA4884 /* BackgroundSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46CE1B729E9D00CA4884 /* BackgroundSessionDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +47,6 @@
 		9BC06C701AD8DC6400829E1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BFA46C81B71D31B00CA4884 /* APIBackgroundTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBackgroundTests.swift; sourceTree = "<group>"; };
-		9BFA46CA1B71D3EC00CA4884 /* DownloadSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadSessionDelegate.swift; sourceTree = "<group>"; };
 		9BFA46CE1B729E9D00CA4884 /* BackgroundSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSessionDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				9B72F4941ADCCE36008978E3 /* CredentialStore.swift */,
-				9BFA46CA1B71D3EC00CA4884 /* DownloadSessionDelegate.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -268,7 +265,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BFA46CF1B729E9D00CA4884 /* BackgroundSessionDelegate.swift in Sources */,
-				9BFA46CB1B71D3EC00CA4884 /* DownloadSessionDelegate.swift in Sources */,
 				9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */,
 				9B72F4951ADCCE36008978E3 /* CredentialStore.swift in Sources */,
 				9BC06C5C1AD8DC6400829E1F /* AppDelegate.swift in Sources */,
