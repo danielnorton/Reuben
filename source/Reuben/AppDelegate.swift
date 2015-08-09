@@ -14,9 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     // MARK: - UIApplicationDelegate
-    func applicationDidFinishLaunching(application: UIApplication) {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+
+        print("\(__FUNCTION__) : launchOptions: \(launchOptions)")
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
+        return true;
+    }
     
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
         print(__FUNCTION__)
+        
+        // TODO: 👦🏽 this works, but is turned off while I figure out the other background transfer
+//        performBackgroundDownloadTest(completionHandler)
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
@@ -34,6 +45,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("🎯🎯🎯🎯 \(__FUNCTION__) : \(identifier)")
         BackgroundSessionDelegate.setSystemCompletionHandler(completionHandler, forIdentifier: identifier)
         _ = BackgroundSessionDelegate.structuresForIdentifier(identifier)
+    }
+    
+    
+    // MARK: - Private Functions
+    private func performBackgroundDownloadTest(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        let url = NSURL(string: "https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.pdf")!
+        let (session, delegate) = BackgroundSessionDelegate.structuresForUrl(url)
+
+        delegate.completion = {(task: NSURLSessionDownloadTask, url: NSURL) in
+            
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+            if let fileName = task.originalRequest?.URL?.lastPathComponent {
+                
+                let newName = documentsPath.stringByAppendingPathComponent(fileName)
+                let newUrl = NSURL(fileURLWithPath: newName)
+                let mgr = NSFileManager()
+                
+                if mgr.fileExistsAtPath(newName) {
+                    
+                    do {
+                        
+                        try mgr.removeItemAtURL(newUrl)
+                        
+                        
+                    } catch { }
+                }
+                
+                do {
+                    
+                    try mgr.moveItemAtURL(url, toURL: newUrl)
+                    print("\(NSDate()) - finish \(url.absoluteString) - \(newUrl.absoluteString)")
+                    
+                } catch {
+                    
+                    print("\(NSDate()) - 😨😨😨 FAILED!! Moving \(url.absoluteString) to \(newUrl.absoluteString)")
+                    
+                }
+            }
+            
+            completionHandler(.NewData)
+        }
+        
+        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 30)
+        
+        let task = session.downloadTaskWithRequest(request)
+        
+        print("\(NSDate()) - start \(url.host!)")
+        task.resume()
     }
 }
 

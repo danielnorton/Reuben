@@ -33,7 +33,7 @@ class ToolsViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 1000
+        return 10
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -44,11 +44,21 @@ class ToolsViewController: UICollectionViewController {
     }
     
     
+    // MARK: - UICollectionViewDelegate
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forRow: 1000, inSection: 5),
+            atScrollPosition: UICollectionViewScrollPosition.CenteredVertically,
+            animated: true)
+    }
+    
+    
     // MARK: - ToolsViewController
     @IBAction func didTapTestDownload(sender: UIBarButtonItem) {
 
-//        let url = NSURL(string: "https://developer.apple.com/library/ios/samplecode/MetalVideoCapture/MetalVideoCapture.zip")!
-        let url = NSURL(string: "https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.pdf")!
+//        let url = NSURL(string: "http://devstreaming.apple.com/videos/wwdc/2015/106z3yjwpfymnauri96m/106/106_hd_whats_new_in_swift.mp4?dl=1")!
+        let url = NSURL(string: "https://developer.apple.com/library/ios/samplecode/MetalVideoCapture/MetalVideoCapture.zip")!
+//        let url = NSURL(string: "https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.pdf")!
         let (session, delegate) = BackgroundSessionDelegate.structuresForUrl(url)
         delegate.completion = {(task: NSURLSessionDownloadTask, url: NSURL) in
             

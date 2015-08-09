@@ -27,15 +27,15 @@ class BackgroundSessionDelegate: NSObject, NSURLSessionDelegate {
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
 
         print(__FUNCTION__)
-        session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
-            
-            let counts = dataTasks.count + uploadTasks.count + downloadTasks.count
-            print("\(__FUNCTION__) : \(counts)")
-            if counts == 0 {
-                
-                self.popSystemCompletionHandler(session.configuration.identifier)
-            }
-        }
+//        session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
+//            
+//            let counts = dataTasks.count + uploadTasks.count + downloadTasks.count
+//            print("\(__FUNCTION__) : \(counts)")
+//            if counts == 0 {
+//                
+//                self.popSystemCompletionHandler(session.configuration.identifier)
+//            }
+//        }
     }
     
     
@@ -91,7 +91,7 @@ class BackgroundSessionDelegate: NSObject, NSURLSessionDelegate {
     static func setSystemCompletionHandler(completionHandler: () -> Void, forIdentifier identifier: String) {
         
         print("\(__FUNCTION__) : \(identifier)")
-        assert(!systemCompletionHandlers.keys.contains(identifier))
+//        assert(!systemCompletionHandlers.keys.contains(identifier))
         
         systemCompletionHandlers[identifier] = completionHandler
     }
@@ -100,9 +100,9 @@ class BackgroundSessionDelegate: NSObject, NSURLSessionDelegate {
     // MARK: private functions
     private func popSystemCompletionHandler(identifier: String?) {
         
-        if let identifier = identifier, handler = BackgroundSessionDelegate.systemCompletionHandlers[identifier] {
-            
-            BackgroundSessionDelegate.sessions.removeValueForKey(identifier)
+        print(__FUNCTION__)
+        if let identifier = identifier, handler = BackgroundSessionDelegate.systemCompletionHandlers.removeValueForKey(identifier) {
+
             handler()
         }
     }
