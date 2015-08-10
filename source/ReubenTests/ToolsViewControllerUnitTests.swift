@@ -18,7 +18,7 @@ class ToolsViewControllerUnitTests: XCTestCase {
         super.setUp()
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let name = NSStringFromClass(ToolsViewController.self).pathExtension
+        let name = (NSStringFromClass(ToolsViewController.self) as NSString).pathExtension
         if let vc = storyboard.instantiateViewControllerWithIdentifier(name) as? ToolsViewController {
          
             self.tools = vc

@@ -62,7 +62,7 @@ class ToolsViewController: UICollectionViewController {
         let (session, delegate) = BackgroundSessionDelegate.structuresForUrl(url)
         delegate.completion = {(task: NSURLSessionDownloadTask, url: NSURL) in
             
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
             if let fileName = task.originalRequest?.URL?.lastPathComponent {
                 
                 let newName = documentsPath.stringByAppendingPathComponent(fileName)
