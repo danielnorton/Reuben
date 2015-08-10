@@ -25,8 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
         print(__FUNCTION__)
-        
-        // TODO: 👦🏽 this works, but is turned off while I figure out the other background transfer
         performBackgroundFetchTest(completionHandler)
     }
     
@@ -87,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                    
 //                }
 //            }
-//            
+//
 //            completionHandler(.NewData)
 //        }
         
@@ -95,13 +93,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let task = session.dataTaskWithRequest(request) { (data, _, error) -> Void in
             
-            if (error === nil) {
+            if (error != nil) {
                 
                 completionHandler(.Failed)
                 return
             }
             
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+            _ = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
             
             print("completionHandler(.NewData)")
             completionHandler(.NewData)
