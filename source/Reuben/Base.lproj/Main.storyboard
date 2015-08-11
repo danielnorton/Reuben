@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="15A235d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="v2I-aE-1tN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A244d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="v2I-aE-1tN">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -55,13 +55,7 @@
                             <outlet property="delegate" destination="A0M-qy-ddX" id="i2j-Cb-Oht"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="N3o-2o-bgf">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="TNR-gT-9nH">
-                            <connections>
-                                <action selector="didTapTestDownload:" destination="A0M-qy-ddX" id="ti5-Al-Tc8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="N3o-2o-bgf"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ybx-aS-QrM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -19,11 +19,6 @@ class ToolsViewController: UICollectionViewController {
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
     // MARK: - UICollectionViewDataSource
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -47,55 +42,6 @@ class ToolsViewController: UICollectionViewController {
     // MARK: - UICollectionViewDelegate
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forRow: 1000, inSection: 5),
-            atScrollPosition: UICollectionViewScrollPosition.CenteredVertically,
-            animated: true)
-    }
-    
-    
-    // MARK: - ToolsViewController
-    @IBAction func didTapTestDownload(sender: UIBarButtonItem) {
-
-//        let url = NSURL(string: "http://devstreaming.apple.com/videos/wwdc/2015/106z3yjwpfymnauri96m/106/106_hd_whats_new_in_swift.mp4?dl=1")!
-        let url = NSURL(string: "https://developer.apple.com/library/ios/samplecode/MetalVideoCapture/MetalVideoCapture.zip")!
-//        let url = NSURL(string: "https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.pdf")!
-        let (session, delegate) = BackgroundSessionDelegate.structuresForUrl(url)
-        delegate.completion = {(task: NSURLSessionDownloadTask, url: NSURL) in
-            
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-            if let fileName = task.originalRequest?.URL?.lastPathComponent {
-                
-                let newName = documentsPath.stringByAppendingPathComponent(fileName)
-                let newUrl = NSURL(fileURLWithPath: newName)
-                let mgr = NSFileManager()
-                
-                if mgr.fileExistsAtPath(newName) {
-                    
-                    do {
-                        
-                        try mgr.removeItemAtURL(newUrl)
-                        
-                    } catch { }
-                }
-                
-                do {
-                    
-                    try mgr.moveItemAtURL(url, toURL: newUrl)
-                    print("\(NSDate()) - finish \(url.absoluteString) - \(newUrl.absoluteString)")
-                    
-                } catch {
-                    
-                    print("\(NSDate()) - 😨😨😨 FAILED!! Moving \(url.absoluteString) to \(newUrl.absoluteString)")
-                    
-                }
-            }
-        }
-        
-        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 30)
-        
-        let task = session.downloadTaskWithRequest(request)
-        
-        print("\(NSDate()) - start \(url.host!)")
-        task.resume()
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
 }

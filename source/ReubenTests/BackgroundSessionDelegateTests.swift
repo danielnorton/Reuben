@@ -10,7 +10,7 @@
 import UIKit
 import XCTest
 
-class APIBackgroundTests: XCTestCase {
+class BackgroundSessionDelegateTests: XCTestCase {
 
     
     func testCreateSessionForUrl() {
@@ -76,30 +76,6 @@ class APIBackgroundTests: XCTestCase {
         let url = NSURL(string: "https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.pdf")!
         let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 30)
         
-        let task = session.downloadTaskWithRequest(request)
-        
-        print("\(NSDate()) - start \(identifier)")
-        task.resume()
-        self.waitForExpectationsWithTimeout(120.0, handler: nil)
-    }
-    
-    func testLargeDownload() {
-        
-        let identifier = __FUNCTION__
-        let waitHandler = self.expectationWithDescription(identifier)
-        let (session, delegate) = BackgroundSessionDelegate.structuresForIdentifier(identifier)
-        delegate.completion = {(task: NSURLSessionDownloadTask, url: NSURL) in
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
-                print("\(NSDate()) - finish \(identifier)")
-                waitHandler.fulfill()
-            })
-        }
-        
-        let url = NSURL(string: "https://developer.apple.com/library/ios/samplecode/MetalVideoCapture/MetalVideoCapture.zip")!
-        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 30)
-
         let task = session.downloadTaskWithRequest(request)
         
         print("\(NSDate()) - start \(identifier)")
