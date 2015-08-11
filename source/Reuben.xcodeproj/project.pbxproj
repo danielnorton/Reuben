@@ -15,6 +15,8 @@
 		9BC06C611AD8DC6400829E1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C5F1AD8DC6400829E1F /* Main.storyboard */; };
 		9BC06C631AD8DC6400829E1F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C621AD8DC6400829E1F /* Images.xcassets */; };
 		9BC06C661AD8DC6400829E1F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C641AD8DC6400829E1F /* LaunchScreen.xib */; };
+		9BED58701B79C88B00D35A81 /* UserAuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED586F1B79C88B00D35A81 /* UserAuthenticationServices.swift */; };
+		9BED58721B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED58711B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift */; };
 		9BFA46C71B71397800CA4884 /* ToolsViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */; };
 		9BFA46C91B71D31B00CA4884 /* BackgroundSessionDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46C81B71D31B00CA4884 /* BackgroundSessionDelegateTests.swift */; };
 		9BFA46CF1B729E9D00CA4884 /* BackgroundSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46CE1B729E9D00CA4884 /* BackgroundSessionDelegate.swift */; };
@@ -43,6 +45,8 @@
 		9BC06C651AD8DC6400829E1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9BC06C6B1AD8DC6400829E1F /* ReubenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReubenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC06C701AD8DC6400829E1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BED586F1B79C88B00D35A81 /* UserAuthenticationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthenticationServices.swift; sourceTree = "<group>"; };
+		9BED58711B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthenticationServicesTests.swift; sourceTree = "<group>"; };
 		9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BFA46C81B71D31B00CA4884 /* BackgroundSessionDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSessionDelegateTests.swift; sourceTree = "<group>"; };
 		9BFA46CE1B729E9D00CA4884 /* BackgroundSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSessionDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				9B72F4941ADCCE36008978E3 /* CredentialStore.swift */,
+				9BED586F1B79C88B00D35A81 /* UserAuthenticationServices.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 				9BFA46C81B71D31B00CA4884 /* BackgroundSessionDelegateTests.swift */,
 				9B72F4901ADCCC46008978E3 /* CredentialStoreTests.swift */,
 				9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */,
+				9BED58711B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift */,
 			);
 			path = ReubenTests;
 			sourceTree = "<group>";
@@ -267,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BFA46CF1B729E9D00CA4884 /* BackgroundSessionDelegate.swift in Sources */,
+				9BED58701B79C88B00D35A81 /* UserAuthenticationServices.swift in Sources */,
 				9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */,
 				9B72F4951ADCCE36008978E3 /* CredentialStore.swift in Sources */,
 				9BC06C5C1AD8DC6400829E1F /* AppDelegate.swift in Sources */,
@@ -279,6 +286,7 @@
 			files = (
 				9BFA46C91B71D31B00CA4884 /* BackgroundSessionDelegateTests.swift in Sources */,
 				9BFA46C71B71397800CA4884 /* ToolsViewControllerUnitTests.swift in Sources */,
+				9BED58721B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift in Sources */,
 				9B72F4911ADCCC46008978E3 /* CredentialStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
