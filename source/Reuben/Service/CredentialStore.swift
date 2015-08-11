@@ -9,21 +9,21 @@
 import UIKit
 import Security
 
-public class CredentialStore: NSObject {
+struct CredentialStore {
    
-    let secClass = String(format: kSecClass as String)
-    let secClassGenericPassword = String(format: kSecClassGenericPassword as String)
-    let secAttrAccount = String(format: kSecAttrAccount as String)
-    let secAttrService = String(format: kSecAttrService as String)
-    let secMatchCaseInsensitive = String(format: kSecMatchCaseInsensitive as String)
-    let secReturnAttributes = String(format: kSecReturnAttributes as String)
-    let secReturnData = String(format: kSecReturnData as String)
-    let secValueData = String(format: kSecValueData as String)
+    static let secClass = kSecClass as String
+    static let secClassGenericPassword = kSecClassGenericPassword as String
+    static let secAttrAccount = kSecAttrAccount as String
+    static let secAttrService = kSecAttrService as String
+    static let secMatchCaseInsensitive = kSecMatchCaseInsensitive as String
+    static let secReturnAttributes = kSecReturnAttributes as String
+    static let secReturnData = kSecReturnData as String
+    static let secValueData = kSecValueData as String
     
     // MARK: -
     // MARK: CredentialStore
-    // MARK: Public Methods
-    public func save(userName: String, serviceName: String, password: String) {
+    // MARK: Public Functions
+    static func save(userName: String, serviceName: String, password: String) {
         
         let data = password.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         if data == nil { return }
@@ -50,7 +50,7 @@ public class CredentialStore: NSObject {
         }
     }
     
-    public func read(userName: String, serviceName: String) -> String? {
+    static func read(userName: String, serviceName: String) -> String? {
         
         var password: NSString?
         
@@ -67,7 +67,7 @@ public class CredentialStore: NSObject {
         return password as String?
     }
     
-    public func remove(userName: String, serviceName: String) {
+    static func remove(userName: String, serviceName: String) {
         
         self.find(userName
             , serviceName: serviceName
@@ -83,8 +83,8 @@ public class CredentialStore: NSObject {
     }
     
     
-    //MARK: Private Methods
-    func find(userName: String
+    //MARK: Private Functions
+    static func find(userName: String
         , serviceName: String
         , attributes: Bool
         , foundAction: ((AnyObject) -> Void)?
