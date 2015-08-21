@@ -10,6 +10,7 @@ import UIKit
 
 class UserAuthenticationServices {
     
+    static let defaultServiceName = "Reuben OAuth"
     let securityServiceName: String
     internal static let tokenName = "Reuben User OAuth Token"
     
@@ -49,5 +50,14 @@ class UserAuthenticationServices {
         
         let service = CredentialStore.self
         service.remove(UserAuthenticationServices.tokenName, serviceName: securityServiceName)
+    }
+    
+    var loginViewController: UIViewController {
+        
+        get {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            return storyboard.instantiateViewControllerWithIdentifier("LoginViewController")
+        }
     }
 }

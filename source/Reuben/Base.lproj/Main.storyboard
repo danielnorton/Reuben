@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A244d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="v2I-aE-1tN">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -20,6 +21,92 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQn-gA-MGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-36" y="722"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="D7D-Ds-Jt2">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="wtJ-ZK-Blh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xhb-Ug-ocN"/>
+                        <viewControllerLayoutGuide type="bottom" id="ovU-zD-mxo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WGM-WD-Rid">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vvi-rb-WRU">
+                                <rect key="frame" x="20" y="28" width="560" height="46"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="user name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bfB-bz-PQV">
+                                        <rect key="frame" x="10" y="0.0" width="540" height="46"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="bfB-bz-PQV" firstAttribute="leading" secondItem="Vvi-rb-WRU" secondAttribute="leading" constant="10" id="2Ri-RP-8Md"/>
+                                    <constraint firstAttribute="bottom" secondItem="bfB-bz-PQV" secondAttribute="bottom" id="9M7-le-nvM"/>
+                                    <constraint firstAttribute="height" constant="46" id="FLa-Wy-vSb"/>
+                                    <constraint firstAttribute="trailing" secondItem="bfB-bz-PQV" secondAttribute="trailing" constant="10" id="RhR-VV-NJl"/>
+                                    <constraint firstItem="bfB-bz-PQV" firstAttribute="top" secondItem="Vvi-rb-WRU" secondAttribute="top" id="rvf-do-XCk"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ynU-5x-PX4">
+                                <rect key="frame" x="20" y="98" width="560" height="46"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ItK-Ti-zpk">
+                                        <rect key="frame" x="10" y="0.0" width="540" height="46"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                    </textField>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="1dA-qe-Lx0"/>
+                                    <constraint firstItem="ItK-Ti-zpk" firstAttribute="leading" secondItem="ynU-5x-PX4" secondAttribute="leading" constant="10" id="6Bd-v1-2F4"/>
+                                    <constraint firstAttribute="bottom" secondItem="ItK-Ti-zpk" secondAttribute="bottom" id="akU-vx-HTL"/>
+                                    <constraint firstAttribute="trailing" secondItem="ItK-Ti-zpk" secondAttribute="trailing" constant="10" id="mkH-fn-br7"/>
+                                    <constraint firstItem="ItK-Ti-zpk" firstAttribute="top" secondItem="ynU-5x-PX4" secondAttribute="top" id="xwz-Wh-Bic"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ckf-VY-Bhs">
+                                <rect key="frame" x="20" y="168" width="560" height="46"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="cXH-yw-9O7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ckf-VY-Bhs" firstAttribute="top" secondItem="ynU-5x-PX4" secondAttribute="bottom" constant="24" id="AjZ-Lc-l4j"/>
+                            <constraint firstItem="Ckf-VY-Bhs" firstAttribute="leading" secondItem="WGM-WD-Rid" secondAttribute="leadingMargin" id="LRG-mF-PhA"/>
+                            <constraint firstItem="ynU-5x-PX4" firstAttribute="trailing" secondItem="WGM-WD-Rid" secondAttribute="trailingMargin" id="OXP-HC-4D4"/>
+                            <constraint firstItem="ynU-5x-PX4" firstAttribute="top" secondItem="Vvi-rb-WRU" secondAttribute="bottom" constant="24" id="Tgg-qa-ZmC"/>
+                            <constraint firstItem="Vvi-rb-WRU" firstAttribute="trailing" secondItem="WGM-WD-Rid" secondAttribute="trailingMargin" id="URO-Ua-Cke"/>
+                            <constraint firstItem="ynU-5x-PX4" firstAttribute="leading" secondItem="WGM-WD-Rid" secondAttribute="leadingMargin" id="qlk-DJ-2CR"/>
+                            <constraint firstItem="Vvi-rb-WRU" firstAttribute="top" secondItem="Xhb-Ug-ocN" secondAttribute="bottom" constant="8" id="vfV-ew-scC"/>
+                            <constraint firstItem="Ckf-VY-Bhs" firstAttribute="trailing" secondItem="WGM-WD-Rid" secondAttribute="trailingMargin" id="yCW-0P-03V"/>
+                            <constraint firstItem="Vvi-rb-WRU" firstAttribute="leading" secondItem="WGM-WD-Rid" secondAttribute="leadingMargin" id="zsH-2G-UH9"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zig-cS-SrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-36" y="1502"/>
         </scene>
         <!--Tools View Controller-->
         <scene sceneID="Vyz-02-Gpd">

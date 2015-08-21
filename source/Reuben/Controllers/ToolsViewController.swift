@@ -18,6 +18,18 @@ class ToolsViewController: UICollectionViewController {
         
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
+        if !service.hasUser {
+            
+            let vc = service.loginViewController
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
+    }
 
 
     // MARK: - UICollectionViewDataSource
