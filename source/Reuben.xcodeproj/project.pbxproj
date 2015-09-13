@@ -15,6 +15,7 @@
 		9BC06C611AD8DC6400829E1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C5F1AD8DC6400829E1F /* Main.storyboard */; };
 		9BC06C631AD8DC6400829E1F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C621AD8DC6400829E1F /* Images.xcassets */; };
 		9BC06C661AD8DC6400829E1F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C641AD8DC6400829E1F /* LaunchScreen.xib */; };
+		9BEC130F1BA52E81002AB3E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC130E1BA52E81002AB3E6 /* LoginViewController.swift */; };
 		9BED58701B79C88B00D35A81 /* UserAuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED586F1B79C88B00D35A81 /* UserAuthenticationServices.swift */; };
 		9BED58721B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED58711B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift */; };
 		9BFA46C71B71397800CA4884 /* ToolsViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */; };
@@ -45,6 +46,7 @@
 		9BC06C651AD8DC6400829E1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9BC06C6B1AD8DC6400829E1F /* ReubenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReubenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC06C701AD8DC6400829E1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BEC130E1BA52E81002AB3E6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9BED586F1B79C88B00D35A81 /* UserAuthenticationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthenticationServices.swift; sourceTree = "<group>"; };
 		9BED58711B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthenticationServicesTests.swift; sourceTree = "<group>"; };
 		9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsViewControllerUnitTests.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				9B5A2F641AE8B66A00DCF867 /* ToolsViewController.swift */,
+				9BEC130E1BA52E81002AB3E6 /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BEC130F1BA52E81002AB3E6 /* LoginViewController.swift in Sources */,
 				9BFA46CF1B729E9D00CA4884 /* BackgroundSessionDelegate.swift in Sources */,
 				9BED58701B79C88B00D35A81 /* UserAuthenticationServices.swift in Sources */,
 				9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */,
