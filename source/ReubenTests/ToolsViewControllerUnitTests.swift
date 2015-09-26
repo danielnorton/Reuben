@@ -12,7 +12,7 @@ import XCTest
 
 class ToolsViewControllerUnitTests: XCTestCase {
     
-    var tools: ToolsViewController?
+    var controller: ToolsViewController?
     
     override func setUp() {
         super.setUp()
@@ -21,7 +21,7 @@ class ToolsViewControllerUnitTests: XCTestCase {
         let name = (NSStringFromClass(ToolsViewController.self) as NSString).pathExtension
         if let vc = storyboard.instantiateViewControllerWithIdentifier(name) as? ToolsViewController {
          
-            self.tools = vc
+            self.controller = vc
             
         } else {
             
@@ -31,7 +31,7 @@ class ToolsViewControllerUnitTests: XCTestCase {
 
     func testStartupDependancies() {
 
-        if let vc = tools {
+        if let vc = controller {
 
             XCTAssertNotNil(vc.collectionView, "no CollectionView")
             XCTAssert(vc.collectionView?.delegate === vc, "view controller is not delegate")

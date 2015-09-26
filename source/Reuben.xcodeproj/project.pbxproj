@@ -18,6 +18,7 @@
 		9BEC130F1BA52E81002AB3E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC130E1BA52E81002AB3E6 /* LoginViewController.swift */; };
 		9BED58701B79C88B00D35A81 /* UserAuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED586F1B79C88B00D35A81 /* UserAuthenticationServices.swift */; };
 		9BED58721B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED58711B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift */; };
+		9BFA181B1BA5FFCA00ADFF25 /* LoginViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA181A1BA5FFCA00ADFF25 /* LoginViewControllerUnitTests.swift */; };
 		9BFA46C71B71397800CA4884 /* ToolsViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */; };
 		9BFA46C91B71D31B00CA4884 /* BackgroundSessionDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46C81B71D31B00CA4884 /* BackgroundSessionDelegateTests.swift */; };
 		9BFA46CF1B729E9D00CA4884 /* BackgroundSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA46CE1B729E9D00CA4884 /* BackgroundSessionDelegate.swift */; };
@@ -49,6 +50,7 @@
 		9BEC130E1BA52E81002AB3E6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9BED586F1B79C88B00D35A81 /* UserAuthenticationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthenticationServices.swift; sourceTree = "<group>"; };
 		9BED58711B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthenticationServicesTests.swift; sourceTree = "<group>"; };
+		9BFA181A1BA5FFCA00ADFF25 /* LoginViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BFA46C81B71D31B00CA4884 /* BackgroundSessionDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSessionDelegateTests.swift; sourceTree = "<group>"; };
 		9BFA46CE1B729E9D00CA4884 /* BackgroundSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSessionDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				9B72F4901ADCCC46008978E3 /* CredentialStoreTests.swift */,
 				9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */,
 				9BED58711B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift */,
+				9BFA181A1BA5FFCA00ADFF25 /* LoginViewControllerUnitTests.swift */,
 			);
 			path = ReubenTests;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				9BFA46C71B71397800CA4884 /* ToolsViewControllerUnitTests.swift in Sources */,
 				9BED58721B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift in Sources */,
 				9B72F4911ADCCC46008978E3 /* CredentialStoreTests.swift in Sources */,
+				9BFA181B1BA5FFCA00ADFF25 /* LoginViewControllerUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,28 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        setupKeyboardObservers()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        tearDownKeyboardObservers()
+    }
+    
+    
+    // MARK: -
+    // MARK: LoginViewController
+    // MARK: IBActions
+    @IBAction func didTapOutsideView(sender: UITapGestureRecognizer) {
+        
+        dismissKeyboard()
+    }
+    
+    
+    // MARK: Private Functions
+    private func setupKeyboardObservers() {
+        
         keyboardChangeObserver = NSNotificationCenter.defaultCenter().addObserverForName(
             UIKeyboardWillChangeFrameNotification,
             object: nil,
@@ -48,7 +70,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    private func tearDownKeyboardObservers() {
         
         if let change = keyboardChangeObserver {
             
@@ -63,12 +85,10 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // MARK: -
-    // MARK: ViewController
-    @IBAction func didTapOutsideView(sender: UITapGestureRecognizer) {
+    private func dismissKeyboard() {
         
-        self.userNameTextField.resignFirstResponder()
-        self.passwordTextField.resignFirstResponder()
+        userNameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
     }
 }
 

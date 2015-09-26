@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="v2I-aE-1tN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B17c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="v2I-aE-1tN">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -161,7 +161,7 @@
                                             <constraint firstItem="lu8-u6-hBc" firstAttribute="leading" secondItem="dKE-XO-L1o" secondAttribute="leadingMargin" id="pDj-Sy-5Pm"/>
                                         </constraints>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="Jxq-BK-pAo" appends="YES" id="PWs-GS-yi4"/>
+                                            <outletCollection property="gestureRecognizers" destination="LTm-Sp-P2P" appends="YES" id="elz-xD-VVa"/>
                                         </connections>
                                     </view>
                                 </subviews>
@@ -199,6 +199,11 @@
                 <tapGestureRecognizer id="Jxq-BK-pAo">
                     <connections>
                         <action selector="didTapOutsideView:" destination="Hze-Dt-L3p" id="VA8-N8-wpm"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="LTm-Sp-P2P">
+                    <connections>
+                        <action selector="didTapOutsideView:" destination="Hze-Dt-L3p" id="l6w-CB-zDs"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
