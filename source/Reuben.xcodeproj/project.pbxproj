@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B3323DB1BCEA7DF00E702A8 /* GHStatusServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3323DA1BCEA7DF00E702A8 /* GHStatusServiceTest.swift */; settings = {ASSET_TAGS = (); }; };
 		9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A2F641AE8B66A00DCF867 /* ToolsViewController.swift */; };
+		9B6D8CE81BCEC79900046B21 /* GHStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D8CE71BCEC79900046B21 /* GHStatusService.swift */; settings = {ASSET_TAGS = (); }; };
 		9B72F4911ADCCC46008978E3 /* CredentialStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B72F4901ADCCC46008978E3 /* CredentialStoreTests.swift */; };
 		9B72F4951ADCCE36008978E3 /* CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B72F4941ADCCE36008978E3 /* CredentialStore.swift */; };
 		9B72F4971ADCD166008978E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B72F4961ADCD166008978E3 /* Security.framework */; };
@@ -35,7 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B3323DA1BCEA7DF00E702A8 /* GHStatusServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHStatusServiceTest.swift; sourceTree = "<group>"; };
 		9B5A2F641AE8B66A00DCF867 /* ToolsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
+		9B6D8CE71BCEC79900046B21 /* GHStatusService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHStatusService.swift; sourceTree = "<group>"; };
 		9B72F4901ADCCC46008978E3 /* CredentialStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialStoreTests.swift; sourceTree = "<group>"; };
 		9B72F4941ADCCE36008978E3 /* CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialStore.swift; sourceTree = "<group>"; };
 		9B72F4961ADCD166008978E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -97,6 +101,7 @@
 			children = (
 				9B72F4941ADCCE36008978E3 /* CredentialStore.swift */,
 				9BED586F1B79C88B00D35A81 /* UserAuthenticationServices.swift */,
+				9B6D8CE71BCEC79900046B21 /* GHStatusService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 				9BFA46C61B71397800CA4884 /* ToolsViewControllerUnitTests.swift */,
 				9BED58711B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift */,
 				9BFA181A1BA5FFCA00ADFF25 /* LoginViewControllerUnitTests.swift */,
+				9B3323DA1BCEA7DF00E702A8 /* GHStatusServiceTest.swift */,
 			);
 			path = ReubenTests;
 			sourceTree = "<group>";
@@ -283,6 +289,7 @@
 				9BED58701B79C88B00D35A81 /* UserAuthenticationServices.swift in Sources */,
 				9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */,
 				9B72F4951ADCCE36008978E3 /* CredentialStore.swift in Sources */,
+				9B6D8CE81BCEC79900046B21 /* GHStatusService.swift in Sources */,
 				9BC06C5C1AD8DC6400829E1F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +302,7 @@
 				9BFA46C71B71397800CA4884 /* ToolsViewControllerUnitTests.swift in Sources */,
 				9BED58721B79C8AC00D35A81 /* UserAuthenticationServicesTests.swift in Sources */,
 				9B72F4911ADCCC46008978E3 /* CredentialStoreTests.swift in Sources */,
+				9B3323DB1BCEA7DF00E702A8 /* GHStatusServiceTest.swift in Sources */,
 				9BFA181B1BA5FFCA00ADFF25 /* LoginViewControllerUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

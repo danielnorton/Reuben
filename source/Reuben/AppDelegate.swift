@@ -15,13 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - UIApplicationDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-
-        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalNever)
+        
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         return true;
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
 
+        GHStatusService.refresh(completionHandler)
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
