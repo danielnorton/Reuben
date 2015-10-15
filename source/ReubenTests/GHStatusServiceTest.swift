@@ -101,7 +101,12 @@ class GHStatusServiceTest: XCTestCase {
             if (result == .NewData) {
                 
                 let answer = GHStatusService.readLatest()
-                XCTAssertFalse(answer == nil)
+                XCTAssertNotNil(answer)
+                XCTAssertNotNil(answer!.status)
+                XCTAssertNotNil(answer!.lastUpdated)
+                
+                print("status: \"\(answer!.status)\" last_updated: \"\(answer!.lastUpdated)\"")
+                
                 waitHandler.fulfill()
             }
         }

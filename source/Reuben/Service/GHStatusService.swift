@@ -42,15 +42,21 @@ class GHStatusService {
     static func validate(data: NSData) -> Bool {
         
         var status = false
+        var statusValue = false
         var lastUpdated = false
         var lastUpdatedValue = false
 
         do {
             
-            let deserialized = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            let deserialized = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
             if let json = deserialized as? Dictionary<String, AnyObject> {
              
                 if (json.indexForKey("status") != nil) { status = true }
+                if let _ = json["status"] as? String {
+                    
+                    statusValue = true
+                }
+                
                 if (json.indexForKey("last_updated") != nil) { lastUpdated = true }
                 if let updated = json["last_updated"] as? String {
                     
@@ -63,7 +69,7 @@ class GHStatusService {
             
         } catch {}
         
-        return status && lastUpdated && lastUpdatedValue
+        return status && statusValue && lastUpdated && lastUpdatedValue
     }
     
     static func clean() throws {
@@ -102,7 +108,7 @@ class GHStatusService {
         task.resume()
     }
     
-    static func readLatest() -> Dictionary<String, AnyObject>? {
+    static func readLatest() -> (status: String, lastUpdated: NSDate)? {
         
         let fm = NSFileManager.defaultManager()
         
@@ -114,11 +120,12 @@ class GHStatusService {
                 if let data = NSData(contentsOfURL: file) {
 
                     if self.validate(data) {
-                        
-                        let deserialized = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                        if let json = deserialized as? Dictionary<String, AnyObject> {
+                    
+                        let deserialized = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
+                        if let json =  deserialized as? Dictionary<String, AnyObject> {
                             
-                            return json
+                            let date = self.dateFormatter.dateFromString(json["last_updated"] as! String)!
+                            return (json["status"] as! String, date)
                         }
                     }
                 }
