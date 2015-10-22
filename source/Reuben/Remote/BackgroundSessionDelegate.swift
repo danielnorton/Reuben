@@ -10,8 +10,8 @@ import UIKit
 
 class BackgroundSessionDelegate: NSObject, NSURLSessionDelegate {
     
-    static private(set) var sessions: Dictionary = Dictionary<String, NSURLSession>()
-    static private(set) var systemCompletionHandlers: Dictionary = Dictionary<String, (() -> Void)>()
+    static private(set) var sessions: Dictionary<String, NSURLSession> = Dictionary<String, NSURLSession>()
+    static private(set) var systemCompletionHandlers: Dictionary<String, (() -> Void)> = Dictionary<String, (() -> Void)>()
     
     var completion: ((NSURLSessionDownloadTask, NSURL) -> Void)?
     var systemCompletionHandler: (() -> Void)?
