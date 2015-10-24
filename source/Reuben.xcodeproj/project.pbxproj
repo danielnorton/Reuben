@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B3323DB1BCEA7DF00E702A8 /* GHStatusServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3323DA1BCEA7DF00E702A8 /* GHStatusServiceTest.swift */; settings = {ASSET_TAGS = (); }; };
+		9B0CEC4F1BDB3C0800C069D6 /* ToolsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CEC4E1BDB3C0800C069D6 /* ToolsHeaderView.swift */; };
+		9B3323DB1BCEA7DF00E702A8 /* GHStatusServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3323DA1BCEA7DF00E702A8 /* GHStatusServiceTest.swift */; };
 		9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A2F641AE8B66A00DCF867 /* ToolsViewController.swift */; };
-		9B6D8CE81BCEC79900046B21 /* GHStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D8CE71BCEC79900046B21 /* GHStatusService.swift */; settings = {ASSET_TAGS = (); }; };
+		9B6D8CE81BCEC79900046B21 /* GHStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D8CE71BCEC79900046B21 /* GHStatusService.swift */; };
 		9B72F4911ADCCC46008978E3 /* CredentialStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B72F4901ADCCC46008978E3 /* CredentialStoreTests.swift */; };
 		9B72F4951ADCCE36008978E3 /* CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B72F4941ADCCE36008978E3 /* CredentialStore.swift */; };
 		9B72F4971ADCD166008978E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B72F4961ADCD166008978E3 /* Security.framework */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B0CEC4E1BDB3C0800C069D6 /* ToolsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsHeaderView.swift; sourceTree = "<group>"; };
 		9B3323DA1BCEA7DF00E702A8 /* GHStatusServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHStatusServiceTest.swift; sourceTree = "<group>"; };
 		9B5A2F641AE8B66A00DCF867 /* ToolsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
 		9B6D8CE71BCEC79900046B21 /* GHStatusService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHStatusService.swift; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B0CEC4D1BDB35A100C069D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9B0CEC4E1BDB3C0800C069D6 /* ToolsHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9B5A2F621AE8B19500DCF867 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 				9B5A2F631AE8B4A400DCF867 /* Controllers */,
 				9BFA46CD1B729E6700CA4884 /* Remote */,
 				9B72F4931ADCCE15008978E3 /* Service */,
+				9B0CEC4D1BDB35A100C069D6 /* Views */,
 				9BC06C621AD8DC6400829E1F /* Images.xcassets */,
 				9BC06C5B1AD8DC6400829E1F /* AppDelegate.swift */,
 				9BC06C5F1AD8DC6400829E1F /* Main.storyboard */,
@@ -289,6 +300,7 @@
 				9BED58701B79C88B00D35A81 /* UserAuthenticationServices.swift in Sources */,
 				9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */,
 				9B72F4951ADCCE36008978E3 /* CredentialStore.swift in Sources */,
+				9B0CEC4F1BDB3C0800C069D6 /* ToolsHeaderView.swift in Sources */,
 				9B6D8CE81BCEC79900046B21 /* GHStatusService.swift in Sources */,
 				9BC06C5C1AD8DC6400829E1F /* AppDelegate.swift in Sources */,
 			);
