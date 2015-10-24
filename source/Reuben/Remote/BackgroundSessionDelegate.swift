@@ -26,15 +26,12 @@ class BackgroundSessionDelegate: NSObject, NSURLSessionDelegate {
     
     // MARK: - NSURLSessionDownloadDelegate
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
-        
+
+        NSLog("🐕🐕 %@ From: %@   to: %@", __FUNCTION__, downloadTask.currentRequest!.URL!.absoluteString, location.absoluteString)
         if let comp = self.completion {
             
             comp(downloadTask, location)
         }
-    }
-    
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        
     }
     
     

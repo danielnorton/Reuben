@@ -96,9 +96,11 @@ class GHStatusService {
                 
                 try self.cleanAndSave(url)
                 completionHandler(.NewData)
+                NSLog("📯📯 %@ %@ success", NSStringFromClass(self), __FUNCTION__)
                 
             } catch {
-                
+
+                NSLog("📯📯😡 %@ %@ failed", NSStringFromClass(self), __FUNCTION__)
                 completionHandler(.Failed)
             }
         }
@@ -168,5 +170,6 @@ class GHStatusService {
         let fm = NSFileManager.defaultManager()
         let newName = self.store.URLByAppendingPathComponent("status.json")
         try fm.moveItemAtURL(tempFile, toURL: newName)
+        NSLog("📯📯 %@ %@ to %@", NSStringFromClass(self), __FUNCTION__, newName.absoluteString)
     }
 }
