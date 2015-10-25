@@ -44,7 +44,13 @@ class ToolsViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
+        
+        if let icon = cell as? ToolsCellView {
+            
+            icon.iconTitleLabel.text = "Cell: \(indexPath.row)"
+        }
+        
         return cell
     }
     

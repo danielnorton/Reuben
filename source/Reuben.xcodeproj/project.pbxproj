@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B0A764A1BDC8F7B003547C6 /* ToolsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A76491BDC8F7B003547C6 /* ToolsCellView.swift */; };
 		9B0CEC4F1BDB3C0800C069D6 /* ToolsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CEC4E1BDB3C0800C069D6 /* ToolsHeaderView.swift */; };
 		9B3323DB1BCEA7DF00E702A8 /* GHStatusServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3323DA1BCEA7DF00E702A8 /* GHStatusServiceTest.swift */; };
 		9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A2F641AE8B66A00DCF867 /* ToolsViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B0A76491BDC8F7B003547C6 /* ToolsCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsCellView.swift; sourceTree = "<group>"; };
 		9B0CEC4E1BDB3C0800C069D6 /* ToolsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsHeaderView.swift; sourceTree = "<group>"; };
 		9B3323DA1BCEA7DF00E702A8 /* GHStatusServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHStatusServiceTest.swift; sourceTree = "<group>"; };
 		9B5A2F641AE8B66A00DCF867 /* ToolsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				9B0CEC4E1BDB3C0800C069D6 /* ToolsHeaderView.swift */,
+				9B0A76491BDC8F7B003547C6 /* ToolsCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BEC130F1BA52E81002AB3E6 /* LoginViewController.swift in Sources */,
+				9B0A764A1BDC8F7B003547C6 /* ToolsCellView.swift in Sources */,
 				9BFA46CF1B729E9D00CA4884 /* BackgroundSessionDelegate.swift in Sources */,
 				9BED58701B79C88B00D35A81 /* UserAuthenticationServices.swift in Sources */,
 				9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */,

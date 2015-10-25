@@ -39,17 +39,45 @@
                             <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ToolsViewControllerCell" id="MOG-8I-ntb">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ToolsViewControllerCell" id="MOG-8I-ntb" customClass="ToolsCellView" customModule="Reuben" customModuleProvider="target">
                                 <rect key="frame" x="20" y="164" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="84G-l2-coY">
+                                            <rect key="frame" x="25" y="10" width="100" height="100"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="EgM-rz-0b7"/>
+                                                <constraint firstAttribute="width" constant="100" id="WQW-a4-HVQ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzz-Gy-xN4">
+                                            <rect key="frame" x="8" y="121" width="134" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" red="0.34509803921568627" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="84G-l2-coY" firstAttribute="centerX" secondItem="MOG-8I-ntb" secondAttribute="centerX" id="EtO-pD-6eB"/>
+                                    <constraint firstItem="pzz-Gy-xN4" firstAttribute="top" secondItem="84G-l2-coY" secondAttribute="bottom" constant="11" id="GRO-hG-m9d"/>
+                                    <constraint firstItem="pzz-Gy-xN4" firstAttribute="leading" secondItem="MOG-8I-ntb" secondAttribute="leadingMargin" id="bSe-4p-Oz9"/>
+                                    <constraint firstItem="84G-l2-coY" firstAttribute="top" secondItem="MOG-8I-ntb" secondAttribute="topMargin" constant="2" id="cBb-cT-HG1"/>
+                                    <constraint firstItem="pzz-Gy-xN4" firstAttribute="trailing" secondItem="MOG-8I-ntb" secondAttribute="trailingMargin" id="ik3-Hg-ioe"/>
+                                    <constraint firstItem="pzz-Gy-xN4" firstAttribute="bottom" secondItem="MOG-8I-ntb" secondAttribute="bottomMargin" id="x1T-IP-TAt"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="iconImageView" destination="84G-l2-coY" id="mb9-Ki-AtG"/>
+                                    <outlet property="iconTitleLabel" destination="pzz-Gy-xN4" id="Wyc-iy-yF2"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ToolsViewControllerHeader" id="3Rd-Gh-5S5" customClass="ToolsHeaderView" customModule="Reuben" customModuleProvider="target">
