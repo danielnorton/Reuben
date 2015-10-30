@@ -30,6 +30,33 @@ class ToolsViewController: UICollectionViewController {
         return formatter
     }()
     
+    var ghStatusSaveObserver: NSObjectProtocol?
+    
+    // MARK: UIViewController
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        ghStatusSaveObserver = NSNotificationCenter
+            .defaultCenter()
+            .addObserverForName(GHStatusService.SaveNotification,
+                object: nil,
+                queue: NSOperationQueue.currentQueue()) { (notification) -> Void in
+            
+                    NSLog("👒👒 Reloading ToolsViewController via: %@", GHStatusService.SaveNotification)
+                    self.reloadSection()
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if let observer = ghStatusSaveObserver {
+        
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
+            ghStatusSaveObserver = nil
+        }
+    }
+    
     
     // MARK: UICollectionViewDataSource
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -71,11 +98,31 @@ class ToolsViewController: UICollectionViewController {
             return view
     }
 
-    
+
     // MARK: UICollectionViewDelegate
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        
+        switch indexPath.row {
+            
+        case 1:
+            
+            do {
+                
+                try GHStatusService.clean()
+                self.reloadSection()
+                
+            } catch {
+                
+            }
+
+            
+        default:
+            
+            GHStatusService.refresh(nil)
+        }
+        
     }
     
     
@@ -91,7 +138,7 @@ class ToolsViewController: UICollectionViewController {
     
     
     // MARK: - ToolsViewController
-    func headerContentForSection(section: Int) -> NSAttributedString {
+    private func headerContentForSection(section: Int) -> NSAttributedString {
         
         if let latest = GHStatusService.readLatest() {
 
@@ -125,5 +172,10 @@ class ToolsViewController: UICollectionViewController {
         }
         
         return NSAttributedString(string: "Status unknown")
+    }
+    
+    private func reloadSection() {
+        
+        self.collectionView!.reloadSections(NSIndexSet(index: 0))
     }
 }

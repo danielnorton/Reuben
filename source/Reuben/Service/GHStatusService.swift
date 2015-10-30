@@ -11,13 +11,17 @@ import UIKit
 
 class GHStatusService {
 
+    static let SaveNotification = "GHStatusService.Notification.Save"
+    static let SaveNotificationFileName = "notificationSaveFileName"
+    
+    static var latestCache: (status: String, lastUpdated: NSDate)?
     
     // MARK: - GHStatusService
     // MARK: public static properties
     static let dateFormatter: NSDateFormatter = {
         
         let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd\'T\'HH:mm:SSZ"
+        formatter.dateFormat = "yyyy-MM-dd\'T\'HH:mm:ssZ"
         return formatter
     }()
     
@@ -74,6 +78,7 @@ class GHStatusService {
     
     static func clean() throws {
         
+        latestCache = nil
         let fm = NSFileManager.defaultManager()
         
         do {
@@ -86,7 +91,7 @@ class GHStatusService {
         }
     }
     
-    static func refresh(completionHandler: (UIBackgroundFetchResult) -> Void) {
+    static func refresh(completionHandler: ((UIBackgroundFetchResult) -> Void)?) {
         
         let url = NSURL(string: "https://status.github.com/api/status.json")!
         let (session, delegate) = BackgroundSessionDelegate.structuresForUrl(url)
@@ -94,14 +99,23 @@ class GHStatusService {
             
             do {
                 
-                try self.cleanAndSave(url)
-                completionHandler(.NewData)
+                try self.save(url)
+                latestCache = nil
+                latestCache = readLatest()
+                if let handler = completionHandler {
+                
+                    handler(.NewData)
+                }
                 NSLog("📯📯 %@ %@ success", NSStringFromClass(self), __FUNCTION__)
                 
             } catch {
 
                 NSLog("📯📯😡 %@ %@ failed", NSStringFromClass(self), __FUNCTION__)
-                completionHandler(.Failed)
+                
+                if let handler = completionHandler {
+                    
+                    handler(.Failed)
+                }
             }
         }
         
@@ -112,31 +126,65 @@ class GHStatusService {
     
     static func readLatest() -> (status: String, lastUpdated: NSDate)? {
         
+        if latestCache != nil {
+            
+            return latestCache
+        }
+        
         let fm = NSFileManager.defaultManager()
         
         do {
             
-            let files = try fm.contentsOfDirectoryAtURL(self.store, includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)
-            if let file = files.last {
+            let files = try fm.contentsOfDirectoryAtURL(self.store, includingPropertiesForKeys: [NSURLContentModificationDateKey], options: .SkipsSubdirectoryDescendants)
+            
+            let fileProps = files.sort({ (first, second) -> Bool in
                 
-                if let data = NSData(contentsOfURL: file) {
-
-                    if self.validate(data) {
+                do {
                     
-                        let deserialized = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
-                        if let json =  deserialized as? Dictionary<String, AnyObject> {
-                            
-                            let date = self.dateFormatter.dateFromString(json["last_updated"] as! String)!
-                            return (json["status"] as! String, date)
-                        }
+                    var firstResource: AnyObject?
+                    try first.getResourceValue(&firstResource, forKey: NSURLContentModificationDateKey)
+                    var secondResource: AnyObject?
+                    try second.getResourceValue(&secondResource, forKey: NSURLContentModificationDateKey)
+                    
+                    if let firstDate = firstResource as? NSDate, let secondDate = secondResource as? NSDate {
+                        
+                        return firstDate.compare(secondDate) != NSComparisonResult.OrderedDescending
                     }
+                    
+                } catch {
+                    
                 }
+                
+                return false
+            })
+            
+            if let file = fileProps.last {
+
+                return try read(file)
             }
             
         } catch {
             
         }
 
+        return nil
+    }
+    
+    static func read(file: NSURL) throws -> (status: String, lastUpdated: NSDate)? {
+
+        if let data = NSData(contentsOfURL: file) {
+            
+            if self.validate(data) {
+                
+                let deserialized = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
+                if let json =  deserialized as? Dictionary<String, AnyObject> {
+                    
+                    let date = self.dateFormatter.dateFromString(json["last_updated"] as! String)!
+                    return (json["status"] as! String, date)
+                }
+            }
+        }
+        
         return nil
     }
     
@@ -168,8 +216,22 @@ class GHStatusService {
     private static func save(tempFile: NSURL) throws {
     
         let fm = NSFileManager.defaultManager()
-        let newName = self.store.URLByAppendingPathComponent("status.json")
-        try fm.moveItemAtURL(tempFile, toURL: newName)
+        let name = NSUUID().UUIDString
+        let newName = self.store.URLByAppendingPathComponent("\(name).json")
         NSLog("📯📯 %@ %@ to %@", NSStringFromClass(self), __FUNCTION__, newName.absoluteString)
+        
+        if fm.fileExistsAtPath(newName.absoluteString) {
+        
+            try fm.removeItemAtPath(newName.absoluteString)
+        }
+        
+        try fm.moveItemAtURL(tempFile, toURL: newName)
+        self.notifySave(newName)
+        
+    }
+    
+    private static func notifySave(file: NSURL) {
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(SaveNotification, object: self, userInfo: [SaveNotificationFileName: file])
     }
 }

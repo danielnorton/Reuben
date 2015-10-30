@@ -30,6 +30,7 @@ class BackgroundSessionDelegate: NSObject, NSURLSessionDelegate {
         NSLog("🐕🐕 %@ From: %@   to: %@", __FUNCTION__, downloadTask.currentRequest!.URL!.absoluteString, location.absoluteString)
         if let comp = self.completion {
             
+            self.completion = nil
             comp(downloadTask, location)
         }
     }
