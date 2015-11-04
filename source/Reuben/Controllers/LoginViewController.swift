@@ -41,6 +41,12 @@ class LoginViewController: UIViewController {
     }
     
     
+    @IBAction func didTapCancel(sender: UITapGestureRecognizer) {
+    
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     // MARK: Private Functions
     private func setupKeyboardObservers() {
         

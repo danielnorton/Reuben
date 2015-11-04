@@ -58,7 +58,7 @@
                                             <rect key="frame" x="8" y="121" width="134" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -91,7 +91,7 @@
                                         <constraint firstAttribute="height" constant="30" id="aQc-5a-5fO"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="27"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zs9-Tn-30P">
@@ -100,7 +100,7 @@
                                     <attributedString key="attributedText">
                                         <fragment content="Label">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="17" name="HelveticaNeue"/>
                                             </attributes>
                                         </fragment>
@@ -208,6 +208,17 @@
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                     </button>
+                                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbz-bf-SJu">
+                                                        <rect key="frame" x="400" y="136" width="166" height="50"/>
+                                                        <animations/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="textColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="eYh-6s-sds" appends="YES" id="qbs-2V-TVy"/>
+                                                        </connections>
+                                                    </label>
                                                 </subviews>
                                                 <animations/>
                                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -215,12 +226,16 @@
                                                     <constraint firstItem="LOg-fR-4B1" firstAttribute="top" secondItem="Ka1-yc-x8y" secondAttribute="bottom" constant="8" id="5rQ-Ae-n71"/>
                                                     <constraint firstItem="Ka1-yc-x8y" firstAttribute="top" secondItem="lu8-u6-hBc" secondAttribute="topMargin" id="7Ik-GM-yEQ"/>
                                                     <constraint firstItem="tB6-HQ-ssx" firstAttribute="centerX" secondItem="lu8-u6-hBc" secondAttribute="centerX" id="8if-x1-RIZ"/>
+                                                    <constraint firstItem="hbz-bf-SJu" firstAttribute="top" secondItem="LOg-fR-4B1" secondAttribute="bottom" constant="8" id="F3Z-DJ-U3V"/>
                                                     <constraint firstItem="Ka1-yc-x8y" firstAttribute="trailing" secondItem="lu8-u6-hBc" secondAttribute="trailingMargin" id="Gjn-m4-hmR"/>
                                                     <constraint firstItem="tB6-HQ-ssx" firstAttribute="top" secondItem="LOg-fR-4B1" secondAttribute="bottom" constant="8" id="HTV-q5-m3j"/>
                                                     <constraint firstAttribute="height" constant="194" id="Kui-Ai-Tv1"/>
+                                                    <constraint firstAttribute="bottom" secondItem="hbz-bf-SJu" secondAttribute="bottom" constant="8" id="NsW-rJ-A1u"/>
                                                     <constraint firstItem="LOg-fR-4B1" firstAttribute="leading" secondItem="lu8-u6-hBc" secondAttribute="leadingMargin" id="YTb-MT-giT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hbz-bf-SJu" secondAttribute="trailing" constant="18" id="Yte-uj-T3h"/>
                                                     <constraint firstItem="Ka1-yc-x8y" firstAttribute="leading" secondItem="lu8-u6-hBc" secondAttribute="leadingMargin" id="aUE-bs-Brh"/>
                                                     <constraint firstItem="tB6-HQ-ssx" firstAttribute="bottom" secondItem="lu8-u6-hBc" secondAttribute="bottomMargin" id="kkW-Rs-Exg"/>
+                                                    <constraint firstItem="hbz-bf-SJu" firstAttribute="leading" secondItem="tB6-HQ-ssx" secondAttribute="trailing" constant="8" id="ll2-VB-d6F"/>
                                                     <constraint firstItem="LOg-fR-4B1" firstAttribute="trailing" secondItem="lu8-u6-hBc" secondAttribute="trailingMargin" id="s8k-Nw-1qz"/>
                                                 </constraints>
                                             </view>
@@ -276,6 +291,11 @@
                 <tapGestureRecognizer id="LTm-Sp-P2P">
                     <connections>
                         <action selector="didTapOutsideView:" destination="Hze-Dt-L3p" id="l6w-CB-zDs"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="eYh-6s-sds">
+                    <connections>
+                        <action selector="didTapCancel:" destination="Hze-Dt-L3p" id="hK1-KY-hwG"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
