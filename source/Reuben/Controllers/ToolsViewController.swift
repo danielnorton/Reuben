@@ -60,13 +60,20 @@ class ToolsViewController: UICollectionViewController {
     
     // MARK: UICollectionViewDataSource
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        //#warning Incomplete method implementation -- Return the number of sections
         return 1
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
-        return 3
+
+        var answer = 2
+        
+        let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
+        if !service.hasUser {
+            
+            answer++
+        }
+        
+        return answer
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -75,7 +82,31 @@ class ToolsViewController: UICollectionViewController {
         
         if let icon = cell as? ToolsCellView {
             
-            icon.iconTitleLabel.text = "Cell: \(indexPath.row)"
+            switch indexPath.row {
+               
+            case 0:
+                
+                icon.backgroundColor = UIColor.orangeColor()
+                icon.iconTitleLabel.textColor = UIColor.blackColor()
+                icon.iconTitleLabel.text = "Refresh Status"
+                
+            case 1:
+                
+                icon.backgroundColor = UIColor.redColor()
+                icon.iconTitleLabel.textColor = UIColor.blackColor()
+                icon.iconTitleLabel.text = "Clean Status"
+                
+            case 2:
+                
+                icon.backgroundColor = UIColor.purpleColor()
+                icon.iconTitleLabel.textColor = UIColor.whiteColor()
+                icon.iconTitleLabel.text = "Login"
+                
+            default:
+                
+                cell.backgroundColor = UIColor.lightGrayColor()
+                icon.iconTitleLabel.textColor = UIColor.blackColor()
+            }
         }
         
         return cell
@@ -105,9 +136,13 @@ class ToolsViewController: UICollectionViewController {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
         
         switch indexPath.row {
+    
+        case 0:
+            
+            GHStatusService.refresh(nil)
             
         case 1:
-            
+
             do {
                 
                 try GHStatusService.clean()
@@ -117,12 +152,16 @@ class ToolsViewController: UICollectionViewController {
                 
             }
 
+        case 2:
+            
+            let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
+            let vc = service.loginViewController
+            self.presentViewController(vc, animated: true, completion: nil)
             
         default:
             
             GHStatusService.refresh(nil)
         }
-        
     }
     
     
@@ -171,7 +210,7 @@ class ToolsViewController: UICollectionViewController {
             return answer
         }
         
-        return NSAttributedString(string: "Status unknown")
+        return NSAttributedString(string: "Status unknown\n")
     }
     
     private func reloadSection() {
