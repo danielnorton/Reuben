@@ -78,6 +78,7 @@ class GHStatusService {
     
     static func clean() throws {
         
+        self.clearBackgroundFetchInterval()
         latestCache = nil
         let fm = NSFileManager.defaultManager()
         
@@ -99,6 +100,7 @@ class GHStatusService {
             
             do {
                 
+                self.beginBackgroundFetchInterval()
                 try self.save(url)
                 latestCache = nil
                 latestCache = readLatest()
@@ -186,6 +188,16 @@ class GHStatusService {
         }
         
         return nil
+    }
+    
+    static func clearBackgroundFetchInterval() {
+        
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalNever)
+    }
+    
+    static func beginBackgroundFetchInterval() {
+        
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
     }
     
     

@@ -12,33 +12,12 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    // MARK: - UIApplicationDelegate
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        
-        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
-        return true;
-    }
-    
+
+    // MARK: -
+    // MARK: UIApplicationDelegate
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
 
         GHStatusService.refresh(completionHandler)
     }
-    
-    func applicationDidEnterBackground(application: UIApplication) {
-
-    }
-    
-    func applicationWillEnterForeground(application: UIApplication) {
-
-    }
-
-    func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {
-
-    }
-    
-    
-    // MARK: - Private Functions
-
 }
 
