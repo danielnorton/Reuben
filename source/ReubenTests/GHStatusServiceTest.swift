@@ -35,6 +35,22 @@ class GHStatusServiceTest: XCTestCase {
         }
     }
     
+    func testFailCleanAndSave() {
+        
+        let tempDir = NSURL(fileURLWithPath: NSTemporaryDirectory())
+        let tempFile = tempDir.URLByAppendingPathComponent(__FUNCTION__)
+
+        do {
+
+            let answer = try GHStatusService.cleanAndSave(tempFile)
+            XCTAssertFalse(answer, "expected false from cleanAndSave")
+            
+        } catch {
+            
+            XCTFail()
+        }
+    }
+    
     func testValidate_Good() {
 
         let text = "{\"status\":\"good\",\"last_updated\":\"2015-10-14T05:00:25Z\"}"
@@ -100,6 +116,31 @@ class GHStatusServiceTest: XCTestCase {
             
             if (result == .NewData) {
                 
+                let answer = GHStatusService.readLatest()
+                XCTAssertNotNil(answer)
+                XCTAssertNotNil(answer!.status)
+                XCTAssertNotNil(answer!.lastUpdated)
+                
+                print("status: \"\(answer!.status)\" last_updated: \"\(answer!.lastUpdated)\"")
+                
+                waitHandler.fulfill()
+            }
+        }
+        
+        GHStatusService.refresh(completionHandler)
+        self.waitForExpectationsWithTimeout(30.0, handler: nil)
+    }
+    
+    func testReadLatestClearCache() {
+        
+        let identifier = __FUNCTION__
+        let waitHandler = self.expectationWithDescription(identifier)
+        
+        let completionHandler = {(result: UIBackgroundFetchResult) -> Void in
+            
+            if (result == .NewData) {
+                
+                GHStatusService.latestCache = nil
                 let answer = GHStatusService.readLatest()
                 XCTAssertNotNil(answer)
                 XCTAssertNotNil(answer!.status)

@@ -37,9 +37,9 @@ class GHStatusService {
                 try self.save(tempFile)
                 
                 return true
+                
             }
         }
-        
         return false
     }
     
