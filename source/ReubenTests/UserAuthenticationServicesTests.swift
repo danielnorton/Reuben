@@ -48,4 +48,20 @@ class UserAuthenticationServicesTests: XCTestCase {
         service.logout()
         XCTAssertFalse(service.hasUser)
     }
+    
+    func testReLogout() {
+        
+        let service = UserAuthenticationServices(hasAccountService)
+        service.logout()
+        service.logout()
+        XCTAssertFalse(service.hasUser)
+    }
+    
+    func testFindController() {
+        
+        let service = UserAuthenticationServices(hasAccountService)
+        
+        let controller = service.loginViewController as? LoginViewController
+        XCTAssert(controller != nil)
+    }
 }
