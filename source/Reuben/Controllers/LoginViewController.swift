@@ -16,19 +16,22 @@ class LoginViewController: UIViewController {
     
     var keyboardChangeObserver: NSObjectProtocol?
     var keyboardHideObserver: NSObjectProtocol?
+    var uaSaveObserver: NSObjectProtocol?
+    var uaSaveFailObserver: NSObjectProtocol?
     
+
     // MARK: -
     // MARK: UIViewController
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        setupKeyboardObservers()
+        setupObservers()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        tearDownKeyboardObservers()
+        tearDownObservers()
     }
     
     
@@ -46,9 +49,16 @@ class LoginViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func didTapSubmit(sender: UIButton) {
+        
+        let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
+        service.login(userNameTextField.text!, password: passwordTextField.text!)
+    }
+    
+    
     
     // MARK: Private Functions
-    private func setupKeyboardObservers() {
+    private func setupObservers() {
         
         keyboardChangeObserver = NSNotificationCenter.defaultCenter().addObserverForName(
             UIKeyboardWillChangeFrameNotification,
@@ -74,9 +84,25 @@ class LoginViewController: UIViewController {
                 self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero
                 self.scrollView.contentOffset = CGPointZero
         }
+        
+        uaSaveObserver = NSNotificationCenter.defaultCenter().addObserverForName(
+            UserAuthenticationServices.SaveNotification,
+            object: nil,
+            queue: NSOperationQueue.currentQueue()) { (notification) -> Void in
+                
+                NSLog("👒👒 LoginViewController received: %@", UserAuthenticationServices.SaveNotification)
+        }
+        
+        uaSaveFailObserver = NSNotificationCenter.defaultCenter().addObserverForName(
+            UserAuthenticationServices.SaveFailNotification,
+            object: nil,
+            queue: NSOperationQueue.currentQueue()) { (notification) -> Void in
+                
+                NSLog("👒👒🦀🦀 LoginViewController received: %@", UserAuthenticationServices.SaveNotification)
+        }
     }
     
-    private func tearDownKeyboardObservers() {
+    private func tearDownObservers() {
         
         if let change = keyboardChangeObserver {
             

@@ -12,7 +12,7 @@ import UIKit
 class GHStatusService {
 
     static let SaveNotification = "GHStatusService.Notification.Save"
-    static let SaveNotificationFileName = "notificationSaveFileName"
+    static let SaveNotificationFileName = "GHStatusService.Notification.Save.FileName"
     
     static var latestCache: (status: String, lastUpdated: NSDate)?
     

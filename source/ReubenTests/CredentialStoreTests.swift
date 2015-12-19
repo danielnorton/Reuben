@@ -20,13 +20,13 @@ class CredentialStoreTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let service = CredentialStore.self
+        let service = CredentialStore.sharedStore()
         service.save(readName, serviceName: serviceName, password: password)
     }
     
     override func tearDown() {
         
-        let service = CredentialStore.self
+        let service = CredentialStore.sharedStore()
         service.remove(readName, serviceName: serviceName)
         service.remove(writeName, serviceName: serviceName)
         
@@ -35,7 +35,7 @@ class CredentialStoreTests: XCTestCase {
     
     func testWriteCredential() {
         
-        let service = CredentialStore.self
+        let service = CredentialStore.sharedStore()
         service.save(writeName, serviceName: serviceName, password: password)
         
         let answer = service.read(writeName, serviceName: serviceName)
@@ -44,7 +44,7 @@ class CredentialStoreTests: XCTestCase {
     
     func testReadCredential() {
         
-        let service = CredentialStore.self
+        let service = CredentialStore.sharedStore()
         if let answer = service.read(readName, serviceName: serviceName) {
             
             XCTAssertEqual(answer, password)
@@ -57,7 +57,7 @@ class CredentialStoreTests: XCTestCase {
     
     func testRemoveCredential() {
         
-        let service = CredentialStore.self
+        let service = CredentialStore.sharedStore()
         service.remove(readName, serviceName: serviceName)
         if let _ = service.read(readName, serviceName: serviceName) {
             

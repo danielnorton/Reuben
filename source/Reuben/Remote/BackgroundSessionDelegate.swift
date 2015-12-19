@@ -8,12 +8,13 @@
 
 import UIKit
 
-class BackgroundSessionDelegate: NSObject, NSURLSessionDelegate {
+class BackgroundSessionDelegate: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate {
     
     static private(set) var sessions: Dictionary<String, NSURLSession> = Dictionary<String, NSURLSession>()
     static private(set) var systemCompletionHandlers: Dictionary<String, (() -> Void)> = Dictionary<String, (() -> Void)>()
     
     var completion: ((NSURLSessionDownloadTask, NSURL) -> Void)?
+    var challenge: (() -> (String, String)?)?
     var systemCompletionHandler: (() -> Void)?
     
     
@@ -32,6 +33,22 @@ class BackgroundSessionDelegate: NSObject, NSURLSessionDelegate {
             
             self.completion = nil
             comp(downloadTask, location)
+        }
+    }
+    
+    
+    // MARK: - NSURLSessionTaskDelegate
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+        
+        NSLog("🐕🐕 %@", __FUNCTION__)
+        if let challenge = self.challenge, let (userName, password) = challenge() {
+
+            let cred = NSURLCredential(user: userName, password: password, persistence: .None)
+            completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, cred)
+            
+        } else {
+            
+            completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge, nil)
         }
     }
     

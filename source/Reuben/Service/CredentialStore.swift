@@ -23,6 +23,11 @@ struct CredentialStore {
     // MARK: -
     // MARK: CredentialStore
     // MARK: Public Functions
+    static func sharedStore() -> CredentialStore.Type {
+    
+        return CredentialStore.self
+    }
+    
     static func save(userName: String, serviceName: String, password: String) {
         
         let data = password.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
@@ -84,6 +89,8 @@ struct CredentialStore {
     
     
     //MARK: Private Functions
+    private init() { }
+    
     static func find(userName: String
         , serviceName: String
         , attributes: Bool
