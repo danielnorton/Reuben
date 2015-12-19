@@ -13,7 +13,7 @@ class UserAuthenticationServicesTests: XCTestCase {
     
     let noAccountService = "\(self.self)_noAccountService"
     let hasAccountService = "\(self.self)_hasAccountService"
-    let user = UserAuthenticationServices.tokenName
+    let user = "user"
     let password = "password"
     var uaSaveFailObserver: NSObjectProtocol?
     
@@ -76,13 +76,5 @@ class UserAuthenticationServicesTests: XCTestCase {
         
         service.login("fred", password: "fred")
         self.waitForExpectationsWithTimeout(120.0, handler: nil)
-    }
-    
-    func testFindController() {
-        
-        let service = UserAuthenticationServices(hasAccountService)
-        
-        let controller = service.loginViewController as? LoginViewController
-        XCTAssert(controller != nil)
     }
 }

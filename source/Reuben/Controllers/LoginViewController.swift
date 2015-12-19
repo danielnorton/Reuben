@@ -59,7 +59,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func didTapCancel(sender: UITapGestureRecognizer) {
     
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.leave()
     }
     
     @IBAction func didTapSubmit(sender: UIButton) {
@@ -118,6 +118,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    private func leave() {
+        
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     private func setupObservers() {
         
         keyboardChangeObserver = NSNotificationCenter.defaultCenter().addObserverForName(
@@ -150,8 +155,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             object: nil,
             queue: NSOperationQueue.currentQueue()) { (notification) -> Void in
                 
-                NSLog("👒👒 LoginViewController received: %@", UserAuthenticationServices.SaveNotification)
+                NSLog("🐠🐠 LoginViewController received: %@", UserAuthenticationServices.SaveNotification)
                 self.setControlState(.Ready)
+                self.leave()
         }
         
         uaSaveFailObserver = NSNotificationCenter.defaultCenter().addObserverForName(
@@ -159,7 +165,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             object: nil,
             queue: NSOperationQueue.currentQueue()) { (notification) -> Void in
                 
-                NSLog("👒👒🦀🦀 LoginViewController received: %@", UserAuthenticationServices.SaveNotification)
+                NSLog("🦀🦀 LoginViewController received: %@", UserAuthenticationServices.SaveNotification)
                 self.setControlState(.Error("Oops! Try again."))
         }
     }

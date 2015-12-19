@@ -31,11 +31,29 @@ class ToolsViewController: UICollectionViewController {
     }()
     
     var ghStatusSaveObserver: NSObjectProtocol?
+    var uaSaveObserver: NSObjectProtocol?
+
+    // MARK: NSObject
+    deinit {
+        
+        if let observer = ghStatusSaveObserver {
+            
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
+            ghStatusSaveObserver = nil
+        }
+        
+        if let observer = uaSaveObserver {
+            
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
+            uaSaveObserver = nil
+        }
+    }
+    
     
     // MARK: UIViewController
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         ghStatusSaveObserver = NSNotificationCenter
             .defaultCenter()
             .addObserverForName(GHStatusService.SaveNotification,
@@ -45,15 +63,14 @@ class ToolsViewController: UICollectionViewController {
                     NSLog("👒👒 Reloading ToolsViewController via: %@", GHStatusService.SaveNotification)
                     self.reloadSection()
         }
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
         
-        if let observer = ghStatusSaveObserver {
-        
-            NSNotificationCenter.defaultCenter().removeObserver(observer)
-            ghStatusSaveObserver = nil
+        uaSaveObserver = NSNotificationCenter.defaultCenter().addObserverForName(
+            UserAuthenticationServices.SaveNotification,
+            object: nil,
+            queue: NSOperationQueue.currentQueue()) { (notification) -> Void in
+                
+                NSLog("🐿🐿 ToolsViewController received: %@", UserAuthenticationServices.SaveNotification)
+                self.reloadSection()
         }
     }
     
@@ -98,9 +115,19 @@ class ToolsViewController: UICollectionViewController {
                 
             case 2:
                 
-                icon.backgroundColor = UIColor.purpleColor()
-                icon.iconTitleLabel.textColor = UIColor.whiteColor()
-                icon.iconTitleLabel.text = "Login"
+                let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
+                if service.hasUser {
+                    
+                    icon.backgroundColor = UIColor.blueColor()
+                    icon.iconTitleLabel.textColor = UIColor.whiteColor()
+                    icon.iconTitleLabel.text = "log Out"
+                    
+                } else {
+                    
+                    icon.backgroundColor = UIColor.purpleColor()
+                    icon.iconTitleLabel.textColor = UIColor.whiteColor()
+                    icon.iconTitleLabel.text = "Login"
+                }
                 
             default:
                 
@@ -153,10 +180,17 @@ class ToolsViewController: UICollectionViewController {
             }
 
         case 2:
-            
+
             let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
-            let vc = service.loginViewController
-            self.presentViewController(vc, animated: true, completion: nil)
+            if service.hasUser {
+             
+                service.logout()
+                self.reloadSection()
+                
+            } else {
+
+                self.performSegueWithIdentifier("loginSegue", sender: nil)
+            }
             
         default:
             

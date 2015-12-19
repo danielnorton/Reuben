@@ -120,6 +120,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="N3o-2o-bgf"/>
+                    <connections>
+                        <segue destination="Hze-Dt-L3p" kind="presentation" identifier="loginSegue" id="EpZ-pU-jL6"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ybx-aS-QrM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

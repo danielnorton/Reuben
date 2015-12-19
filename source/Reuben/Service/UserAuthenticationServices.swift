@@ -89,14 +89,6 @@ class UserAuthenticationServices {
         task.resume()
     }
     
-    var loginViewController: UIViewController {
-        
-        get {
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            return storyboard.instantiateViewControllerWithIdentifier("LoginViewController")
-        }
-    }
     
     // MARK: private functions
     private static func notifySave(userName: String) {
