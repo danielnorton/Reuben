@@ -8,17 +8,21 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var login: UIButton!
+    
     
     var keyboardChangeObserver: NSObjectProtocol?
     var keyboardHideObserver: NSObjectProtocol?
     var uaSaveObserver: NSObjectProtocol?
     var uaSaveFailObserver: NSObjectProtocol?
     
+    var startupPasswordPlaceholder: String?
 
     // MARK: -
     // MARK: UIViewController
@@ -26,6 +30,9 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         
         setupObservers()
+
+        startupPasswordPlaceholder = passwordTextField.placeholder ?? ""
+        self.setControlState(.Ready)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -34,6 +41,12 @@ class LoginViewController: UIViewController {
         tearDownObservers()
     }
     
+    
+    // MARK: UITextFieldDelegate
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        self.setControlState(.Ready)
+    }
     
     // MARK: -
     // MARK: LoginViewController
@@ -51,13 +64,60 @@ class LoginViewController: UIViewController {
     
     @IBAction func didTapSubmit(sender: UIButton) {
         
+        self.setControlState(.Waiting)
         let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
         service.login(userNameTextField.text!, password: passwordTextField.text!)
     }
     
     
-    
     // MARK: Private Functions
+    private enum ControlStates {
+        
+        case Ready
+        case Waiting
+        case Error(String)
+    }
+    
+    private func setControlState(state: ControlStates) {
+        
+        switch state {
+            
+        case .Ready:
+            
+            userNameTextField.enabled = true
+            passwordTextField.enabled = true
+            login.hidden = false
+            activity.stopAnimating()
+            resetPasswordPlaceholder()
+            
+        case .Waiting:
+            
+            userNameTextField.enabled = false
+            passwordTextField.enabled = false
+            login.hidden = true
+            activity.startAnimating()
+            
+        case .Error(let message):
+
+            userNameTextField.enabled = true
+            passwordTextField.enabled = true
+            login.hidden = false
+            activity.stopAnimating()
+            let attributes = [NSForegroundColorAttributeName: UIColor(red: 1.0, green: 160.0/255.0, blue: 162.0/255.0, alpha: 1.0)]
+            self.passwordTextField.attributedPlaceholder = NSAttributedString(string: message, attributes: attributes)
+            self.passwordTextField.text = nil
+        }
+    }
+    
+    private func resetPasswordPlaceholder() {
+
+        if (passwordTextField.attributedPlaceholder != nil) {
+        
+            passwordTextField.attributedPlaceholder = nil
+            passwordTextField.placeholder = startupPasswordPlaceholder
+        }
+    }
+    
     private func setupObservers() {
         
         keyboardChangeObserver = NSNotificationCenter.defaultCenter().addObserverForName(
@@ -91,6 +151,7 @@ class LoginViewController: UIViewController {
             queue: NSOperationQueue.currentQueue()) { (notification) -> Void in
                 
                 NSLog("👒👒 LoginViewController received: %@", UserAuthenticationServices.SaveNotification)
+                self.setControlState(.Ready)
         }
         
         uaSaveFailObserver = NSNotificationCenter.defaultCenter().addObserverForName(
@@ -99,6 +160,7 @@ class LoginViewController: UIViewController {
             queue: NSOperationQueue.currentQueue()) { (notification) -> Void in
                 
                 NSLog("👒👒🦀🦀 LoginViewController received: %@", UserAuthenticationServices.SaveNotification)
+                self.setControlState(.Error("Oops! Try again."))
         }
     }
     
