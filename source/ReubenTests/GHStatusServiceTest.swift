@@ -9,11 +9,13 @@
 @testable import Reuben
 import XCTest
 
+
 class GHStatusServiceTest: XCTestCase {
     
     override func tearDown() {
         
-        _ = try? GHStatusService.clean()
+        let service = GHStatusService()
+        _ = try? service.clean()
         super.tearDown()
     }
     
@@ -25,8 +27,9 @@ class GHStatusServiceTest: XCTestCase {
         
         do {
             
+            let service = GHStatusService()
             _ = try tempText.writeToFile(tempFile.path!, atomically: true, encoding: NSUnicodeStringEncoding)
-            let answer = try GHStatusService.cleanAndSave(tempFile)
+            let answer = try service.cleanAndSave(tempFile)
             XCTAssert(answer, "failed to save")
             
         } catch {
@@ -42,7 +45,8 @@ class GHStatusServiceTest: XCTestCase {
 
         do {
 
-            let answer = try GHStatusService.cleanAndSave(tempFile)
+            let service = GHStatusService()
+            let answer = try service.cleanAndSave(tempFile)
             XCTAssertFalse(answer, "expected false from cleanAndSave")
             
         } catch {
@@ -96,14 +100,16 @@ class GHStatusServiceTest: XCTestCase {
             }
         }
         
-        GHStatusService.refresh(completionHandler)
+        let service = GHStatusService()
+        service.refresh(completionHandler)
         self.waitForExpectationsWithTimeout(30.0, handler: nil)
     }
     
     func testReadEmpty() {
         
-        _ = try? GHStatusService.clean()
-        let answer = GHStatusService.readLatest()
+        let service = GHStatusService()
+        _ = try? service.clean()
+        let answer = service.read()
         XCTAssert(answer == nil)
     }
     
@@ -111,12 +117,13 @@ class GHStatusServiceTest: XCTestCase {
         
         let identifier = __FUNCTION__
         let waitHandler = self.expectationWithDescription(identifier)
+        let service = GHStatusService()
         
         let completionHandler = {(result: UIBackgroundFetchResult) -> Void in
             
             if (result == .NewData) {
                 
-                let answer = GHStatusService.readLatest()
+                let answer = service.read()
                 XCTAssertNotNil(answer)
                 XCTAssertNotNil(answer!.status)
                 XCTAssertNotNil(answer!.lastUpdated)
@@ -127,7 +134,7 @@ class GHStatusServiceTest: XCTestCase {
             }
         }
         
-        GHStatusService.refresh(completionHandler)
+        service.refresh(completionHandler)
         self.waitForExpectationsWithTimeout(30.0, handler: nil)
     }
     
@@ -135,13 +142,14 @@ class GHStatusServiceTest: XCTestCase {
         
         let identifier = __FUNCTION__
         let waitHandler = self.expectationWithDescription(identifier)
+        let service = GHStatusService()
         
         let completionHandler = {(result: UIBackgroundFetchResult) -> Void in
             
             if (result == .NewData) {
                 
-                GHStatusService.latestCache = nil
-                let answer = GHStatusService.readLatest()
+                service.clearCache()
+                let answer = service.read()
                 XCTAssertNotNil(answer)
                 XCTAssertNotNil(answer!.status)
                 XCTAssertNotNil(answer!.lastUpdated)
@@ -152,7 +160,7 @@ class GHStatusServiceTest: XCTestCase {
             }
         }
         
-        GHStatusService.refresh(completionHandler)
+        service.refresh(completionHandler)
         self.waitForExpectationsWithTimeout(30.0, handler: nil)
     }
 }

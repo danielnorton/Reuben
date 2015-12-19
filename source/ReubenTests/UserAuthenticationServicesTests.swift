@@ -11,8 +11,8 @@ import XCTest
 
 class UserAuthenticationServicesTests: XCTestCase {
     
-    let noAccountService = "\(self.self)_noAccountService"
-    let hasAccountService = "\(self.self)_hasAccountService"
+    let noAccountService = "\(self)_noAccountService"
+    let hasAccountService = "\(self)_hasAccountService"
     let user = "user"
     let password = "password"
     var uaSaveFailObserver: NSObjectProtocol?

@@ -14,105 +14,56 @@ class GHStatusService {
     static let SaveNotification = "GHStatusService.Notification.Save"
     static let SaveNotificationFileName = "GHStatusService.Notification.Save.FileName"
     
-    static var latestCache: (status: String, lastUpdated: NSDate)?
+    private let storeService: FileStoreService = {
+       
+        let storeName = NSStringFromClass(GHStatusService)
+        return FileStoreService(storeName: storeName, validate: GHStatusService.validate)
+    }()
     
-    // MARK: - GHStatusService
-    // MARK: public static properties
     static let dateFormatter: NSDateFormatter = {
         
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd\'T\'HH:mm:ssZ"
         return formatter
     }()
-    
-    
-    // MARK: public static functions
-    static func cleanAndSave(tempFile: NSURL) throws -> Bool {
-    
-        if let data = NSData(contentsOfURL: tempFile) {
 
-            if self.validate(data) {
-         
-                try self.clean()
-                try self.save(tempFile)
-                
-                return true
-                
+    static func validate(data: NSData) -> Bool {
+
+        do {
+            
+            if let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))  as? Dictionary<String, AnyObject> where
+                (json.indexForKey("status") != nil),
+                let _ = json["status"] as? String where
+                (json.indexForKey("last_updated") != nil),
+                let rawLast = json["last_updated"] as? String,
+                let _ = GHStatusService.dateFormatter.dateFromString(rawLast) {
+                    
+                    return true
             }
-        }
+        } catch { }
+        
         return false
     }
     
-    static func validate(data: NSData) -> Bool {
-        
-        var status = false
-        var statusValue = false
-        var lastUpdated = false
-        var lastUpdatedValue = false
-
-        do {
-            
-            let deserialized = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
-            if let json = deserialized as? Dictionary<String, AnyObject> {
-             
-                if (json.indexForKey("status") != nil) { status = true }
-                if let _ = json["status"] as? String {
-                    
-                    statusValue = true
-                }
-                
-                if (json.indexForKey("last_updated") != nil) { lastUpdated = true }
-                if let updated = json["last_updated"] as? String {
-                    
-                    if let _ = self.dateFormatter.dateFromString(updated) {
-                        
-                        lastUpdatedValue = true
-                    }
-                }
-            }
-            
-        } catch {}
-        
-        return status && statusValue && lastUpdated && lastUpdatedValue
-    }
-    
-    static func clean() throws {
-        
-        self.clearBackgroundFetchInterval()
-        latestCache = nil
-        let fm = NSFileManager.defaultManager()
-        
-        do {
-            
-            let files = try fm.contentsOfDirectoryAtURL(self.store, includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)
-            for file in files {
-                
-                try fm.removeItemAtURL(file)
-            }
-        }
-    }
-    
-    static func refresh(completionHandler: ((UIBackgroundFetchResult) -> Void)?) {
+    func refresh(completionHandler: ((UIBackgroundFetchResult) -> Void)?) {
         
         let url = NSURL(string: "https://status.github.com/api/status.json")!
         let (session, delegate) = BackgroundSessionDelegate.structuresForUrl(url)
         delegate.completion = {(task: NSURLSessionDownloadTask, url: NSURL) in
+
+            let service = self.storeService
+            self.beginBackgroundFetchInterval()
             
             do {
-                
-                self.beginBackgroundFetchInterval()
-                try self.save(url)
-                latestCache = nil
-                latestCache = readLatest()
+
+                let newUrl = try service.save(url)
+                self.notifySave(newUrl)
                 if let handler = completionHandler {
-                
+                    
                     handler(.NewData)
                 }
-                NSLog("📯📯 %@ %@ success", NSStringFromClass(self), __FUNCTION__)
-                
-            } catch {
 
-                NSLog("📯📯😡 %@ %@ failed", NSStringFromClass(self), __FUNCTION__)
+            } catch {
                 
                 if let handler = completionHandler {
                     
@@ -126,124 +77,53 @@ class GHStatusService {
         task.resume()
     }
     
-    static func readLatest() -> (status: String, lastUpdated: NSDate)? {
+    func clean() throws {
         
-        if latestCache != nil {
-            
-            return latestCache
-        }
+        try storeService.clean()
+    }
+    
+    func cleanAndSave(tempFile: NSURL) throws -> Bool{
         
-        let fm = NSFileManager.defaultManager()
+        return try storeService.cleanAndSave(tempFile)
+    }
+    
+    func clearCache() {
+        
+        storeService.cache = nil
+    }
+    
+    func read() -> (status: String, lastUpdated: NSDate)? {
         
         do {
             
-            let files = try fm.contentsOfDirectoryAtURL(self.store, includingPropertiesForKeys: [NSURLContentModificationDateKey], options: .SkipsSubdirectoryDescendants)
-            
-            let fileProps = files.sort({ (first, second) -> Bool in
+            if let data = storeService.read(),
+                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))  as? Dictionary<String, AnyObject> where
+                (json.indexForKey("status") != nil),
+                let status = json["status"] as? String where
+                (json.indexForKey("last_updated") != nil),
+                let rawLast = json["last_updated"] as? String,
+                let last = GHStatusService.dateFormatter.dateFromString(rawLast) {
                 
-                do {
-                    
-                    var firstResource: AnyObject?
-                    try first.getResourceValue(&firstResource, forKey: NSURLContentModificationDateKey)
-                    var secondResource: AnyObject?
-                    try second.getResourceValue(&secondResource, forKey: NSURLContentModificationDateKey)
-                    
-                    if let firstDate = firstResource as? NSDate, let secondDate = secondResource as? NSDate {
-                        
-                        return firstDate.compare(secondDate) != NSComparisonResult.OrderedDescending
-                    }
-                    
-                } catch {
-                    
-                }
-                
-                return false
-            })
-            
-            if let file = fileProps.last {
-
-                return try read(file)
+                return (status, last)
             }
             
-        } catch {
-            
-        }
-
-        return nil
-    }
-    
-    static func read(file: NSURL) throws -> (status: String, lastUpdated: NSDate)? {
-
-        if let data = NSData(contentsOfURL: file) {
-            
-            if self.validate(data) {
-                
-                let deserialized = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
-                if let json =  deserialized as? Dictionary<String, AnyObject> {
-                    
-                    let date = self.dateFormatter.dateFromString(json["last_updated"] as! String)!
-                    return (json["status"] as! String, date)
-                }
-            }
-        }
+        } catch { }
         
         return nil
     }
     
-    static func clearBackgroundFetchInterval() {
+    func clearBackgroundFetchInterval() {
         
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalNever)
     }
     
-    static func beginBackgroundFetchInterval() {
+    func beginBackgroundFetchInterval() {
         
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
     }
     
-    
-    // MARK: private static properties
-    private static let store: NSURL = {
-
-        let fm = NSFileManager.defaultManager()
-        let urls = fm.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)
-        if let url = urls.first {
-            
-            let fullPath = url.URLByAppendingPathComponent(NSStringFromClass(GHStatusService))
-            
-            do {
-                
-                _ = try fm.createDirectoryAtURL(fullPath, withIntermediateDirectories: true, attributes: nil)
-                return fullPath
-                
-            } catch {
-
-            }
-        }
+    func notifySave(file: NSURL) {
         
-        return NSURL(fileURLWithPath: NSTemporaryDirectory())
-    }()
-
-    
-    // MARK: private static functions
-    private static func save(tempFile: NSURL) throws {
-    
-        let fm = NSFileManager.defaultManager()
-        let name = NSUUID().UUIDString
-        let newName = self.store.URLByAppendingPathComponent("\(name).json")
-        NSLog("📯📯 %@ %@ to %@", NSStringFromClass(self), __FUNCTION__, newName.absoluteString)
-        
-        if fm.fileExistsAtPath(newName.absoluteString) {
-        
-            try fm.removeItemAtPath(newName.absoluteString)
-        }
-        
-        try fm.moveItemAtURL(tempFile, toURL: newName)
-        self.notifySave(newName)
-        
-    }
-    
-    private static func notifySave(file: NSURL) {
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(SaveNotification, object: self, userInfo: [SaveNotificationFileName: file])
+        NSNotificationCenter.defaultCenter().postNotificationName(GHStatusService.SaveNotification, object: self, userInfo: [GHStatusService.SaveNotificationFileName: file])
     }
 }

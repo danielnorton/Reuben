@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: UIApplicationDelegate
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
 
-        GHStatusService.refresh(completionHandler)
+        let service = GHStatusService()
+        service.refresh(completionHandler)
     }
 }
 

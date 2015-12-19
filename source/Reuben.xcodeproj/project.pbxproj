@@ -15,6 +15,7 @@
 		9B72F4911ADCCC46008978E3 /* CredentialStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B72F4901ADCCC46008978E3 /* CredentialStoreTests.swift */; };
 		9B72F4951ADCCE36008978E3 /* CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B72F4941ADCCE36008978E3 /* CredentialStore.swift */; };
 		9B72F4971ADCD166008978E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B72F4961ADCD166008978E3 /* Security.framework */; };
+		9BA86C691C251DD100727267 /* FileStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA86C681C251DD100727267 /* FileStoreService.swift */; };
 		9BC06C5C1AD8DC6400829E1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC06C5B1AD8DC6400829E1F /* AppDelegate.swift */; };
 		9BC06C611AD8DC6400829E1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C5F1AD8DC6400829E1F /* Main.storyboard */; };
 		9BC06C631AD8DC6400829E1F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC06C621AD8DC6400829E1F /* Images.xcassets */; };
@@ -47,6 +48,7 @@
 		9B72F4901ADCCC46008978E3 /* CredentialStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialStoreTests.swift; sourceTree = "<group>"; };
 		9B72F4941ADCCE36008978E3 /* CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialStore.swift; sourceTree = "<group>"; };
 		9B72F4961ADCD166008978E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9BA86C681C251DD100727267 /* FileStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStoreService.swift; sourceTree = "<group>"; };
 		9BC06C561AD8DC6400829E1F /* Reuben.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reuben.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC06C5A1AD8DC6400829E1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC06C5B1AD8DC6400829E1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				9B72F4941ADCCE36008978E3 /* CredentialStore.swift */,
 				9BED586F1B79C88B00D35A81 /* UserAuthenticationServices.swift */,
 				9B6D8CE71BCEC79900046B21 /* GHStatusService.swift */,
+				9BA86C681C251DD100727267 /* FileStoreService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				9BEC130F1BA52E81002AB3E6 /* LoginViewController.swift in Sources */,
 				9B0A764A1BDC8F7B003547C6 /* ToolsCellView.swift in Sources */,
 				9BFA46CF1B729E9D00CA4884 /* BackgroundSessionDelegate.swift in Sources */,
+				9BA86C691C251DD100727267 /* FileStoreService.swift in Sources */,
 				9BED58701B79C88B00D35A81 /* UserAuthenticationServices.swift in Sources */,
 				9B5A2F651AE8B66A00DCF867 /* ToolsViewController.swift in Sources */,
 				9B72F4951ADCCE36008978E3 /* CredentialStore.swift in Sources */,

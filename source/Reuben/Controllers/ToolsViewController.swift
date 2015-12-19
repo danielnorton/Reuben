@@ -162,17 +162,19 @@ class ToolsViewController: UICollectionViewController {
         
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
         
+        let service = GHStatusService()
+        
         switch indexPath.row {
     
         case 0:
-            
-            GHStatusService.refresh(nil)
+
+            service.refresh(nil)
             
         case 1:
 
             do {
                 
-                try GHStatusService.clean()
+                try service.clean()
                 self.reloadSection()
                 
             } catch {
@@ -194,7 +196,7 @@ class ToolsViewController: UICollectionViewController {
             
         default:
             
-            GHStatusService.refresh(nil)
+            service.refresh(nil)
         }
     }
     
@@ -213,7 +215,9 @@ class ToolsViewController: UICollectionViewController {
     // MARK: - ToolsViewController
     private func headerContentForSection(section: Int) -> NSAttributedString {
         
-        if let latest = GHStatusService.readLatest() {
+        let service = GHStatusService()
+        
+        if let latest = service.read() {
 
             let start = NSAttributedString(string: "status: ")
             let answer = NSMutableAttributedString(attributedString: start)
