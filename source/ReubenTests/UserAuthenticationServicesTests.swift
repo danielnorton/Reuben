@@ -17,6 +17,7 @@ class UserAuthenticationServicesTests: XCTestCase {
     let hasAccountService = "\(self)_hasAccountService"
     let user = "user"
     let password = "password"
+    let avatarPath = "https://avatars.githubusercontent.com/u/421735?v=3"
     var uaSaveFailObserver: NSObjectProtocol?
     
     override func setUp() {
@@ -24,6 +25,24 @@ class UserAuthenticationServicesTests: XCTestCase {
         let service = CredentialStore.sharedStore()
         service.save(user, serviceName: hasAccountService, password: password)
         service.remove(user, serviceName: noAccountService)
+        
+        let storeName = NSStringFromClass(UserAuthenticationServices)
+        let storeService = FileStoreService(storeName: storeName)
+        storeService.fileExtension = "json"
+        
+        let tempDir = NSURL(fileURLWithPath: NSTemporaryDirectory())
+        let tempFile = tempDir.URLByAppendingPathComponent(__FUNCTION__)
+        let setupText = "{\"login\":\"\(user)\",\"avatar_url\":\"\(avatarPath)\"}"
+        
+        do {
+            
+            try setupText.writeToFile(tempFile.path!, atomically: true, encoding: NSUnicodeStringEncoding)
+            try storeService.cleanAndSave(tempFile)
+            
+        } catch {
+            
+            XCTFail()
+        }
     }
     
     override func tearDown() {
@@ -31,6 +50,10 @@ class UserAuthenticationServicesTests: XCTestCase {
         let service = CredentialStore.sharedStore()
         service.remove(user, serviceName: hasAccountService)
         service.remove(user, serviceName: noAccountService)
+        
+        let storeName = NSStringFromClass(UserAuthenticationServices)
+        let storeService = FileStoreService(storeName: storeName)
+        _ = try? storeService.clean()
     }
     
     func testHasAccount() {

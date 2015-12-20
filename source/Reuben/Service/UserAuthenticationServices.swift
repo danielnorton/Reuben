@@ -6,27 +6,40 @@
 //  Copyright © 2015 Daniel Norton. All rights reserved.
 //
 
+
 import UIKit
 
+
 class UserAuthenticationServices {
+
     
     static let SaveNotification = "UserAuthenticationServices.Notification.Save"
     static let SaveFailNotification = "UserAuthenticationServices.Notification.Save.Fail"
     static let SaveNotificationUserName = "UserAuthenticationServices.Notification.Save.UserName"
     
-    static let defaultServiceName = "Reuben OAuth"
+    static let defaultServiceName = "Reuben.UserAuthenticationServices"
     let securityServiceName: String
-    internal static let tokenName = "Reuben User OAuth Token"
+    internal static let tokenName = "Reuben.UserAuthenticationServices.Token"
     
+
+    private let storeService: FileStoreService = {
+        
+        let storeName = NSStringFromClass(UserAuthenticationServices)
+        let service = FileStoreService(storeName: storeName, validate: UserAuthenticationServices.validate)
+        service.useCache = true
+        service.fileExtension = "json"
+        
+        return service
+    }()
     
-    // MARK: -
-    // MARK: UserAuthenticationServices
+    // MARK: - init
     init(_ securityServiceName: String) {
         
         self.securityServiceName = securityServiceName
     }
     
     
+    // MARK: - UserAuthenticationServices
     // MARK: Public Functions
     var hasUser: Bool {
 
@@ -34,17 +47,22 @@ class UserAuthenticationServices {
             
             var answer = false
             
-            let service = CredentialStore.sharedStore()
-            service.find(UserAuthenticationServices.tokenName
-                , serviceName: securityServiceName
-                , attributes: true
-                , foundAction: { (_) -> Void in
-
-                    answer = true
-                    
-                }, notFoundAction: nil)
+            if let (userName, _) = readUser() {
             
-            return answer
+                let service = CredentialStore.sharedStore()
+                service.find(userName
+                    , serviceName: securityServiceName
+                    , attributes: true
+                    , foundAction: { (_) -> Void in
+
+                        answer = true
+                        
+                    }, notFoundAction: nil)
+                
+                return answer
+            }
+            
+            return false
         }
     }
     
@@ -54,6 +72,8 @@ class UserAuthenticationServices {
         
         let service = CredentialStore.sharedStore()
         service.remove(UserAuthenticationServices.tokenName, serviceName: securityServiceName)
+        
+        _ = try? storeService.clean()
     }
     
     func login(userName: String, password: String) {
@@ -69,9 +89,18 @@ class UserAuthenticationServices {
                     UserAuthenticationServices.notifySaveFail(userName)
                     
                 } else {
-                    
-                    let service = CredentialStore.sharedStore()
-                    service.save(userName, serviceName: self.securityServiceName, password: password)
+
+                    do {
+                        
+                        try self.storeService.save(url)
+                        let service = CredentialStore.sharedStore()
+                        service.save(userName, serviceName: self.securityServiceName, password: password)
+                        
+                    } catch {
+                        
+                        UserAuthenticationServices.notifySaveFail(userName)
+                    }
+
                     UserAuthenticationServices.notifySave(userName)
                 }
             }
@@ -90,7 +119,42 @@ class UserAuthenticationServices {
     }
     
     
-    // MARK: private functions
+    // MARK: Private Functions
+    static func validate(data: NSData) -> Bool {
+        
+        do {
+            
+            if let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))  as? Dictionary<String, AnyObject> where
+                (json.indexForKey("login") != nil),
+                let _ = json["login"] as? String where
+                (json.indexForKey("avatar_url") != nil),
+                let _ = json["avatar_url"] as? String {
+                    
+                    return true
+            }
+        } catch { }
+        
+        return false
+    }
+    
+    func readUser() -> (userName: String, avatarURL: NSURL)? {
+        
+        do {
+
+            if let data = storeService.read(),
+                json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))  as? Dictionary<String, AnyObject> where
+                (json.indexForKey("login") != nil),
+                let userName = json["login"] as? String where
+                (json.indexForKey("avatar_url") != nil),
+                let avatarPath = json["avatar_url"] as? String {
+                    
+                    return (userName, NSURL(fileURLWithPath: avatarPath))
+            }
+        } catch { }
+        
+        return nil
+    }
+    
     private static func notifySave(userName: String) {
         
         NSNotificationCenter.defaultCenter().postNotificationName(SaveNotification, object: self, userInfo: [SaveNotificationUserName: userName])
