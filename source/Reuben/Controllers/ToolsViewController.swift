@@ -13,6 +13,15 @@ class ToolsViewController: UICollectionViewController {
 
     let cellReuseIdentifier = "ToolsViewControllerCell"
     let headerReuseIdentifier = "ToolsViewControllerHeader"
+    
+    enum CellIndexes: Int {
+        
+        case refreshStatus
+        case cleanStatus
+        case login
+        case unused
+    }
+    
     let headerContentLabel: UILabel = {
         
         let label = UILabel(frame: CGRect.zero)
@@ -29,6 +38,9 @@ class ToolsViewController: UICollectionViewController {
         formatter.timeStyle = .MediumStyle
         return formatter
     }()
+    
+    let userAuthService = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
+    var avatar: UIImage?
     
     var ghStatusSaveObserver: NSObjectProtocol?
     var uaSaveObserver: NSObjectProtocol?
@@ -82,15 +94,7 @@ class ToolsViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        var answer = 2
-        
-        let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
-        if !service.hasUser {
-            
-            answer++
-        }
-        
-        return answer
+        return CellIndexes.login.rawValue + 1
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -99,40 +103,50 @@ class ToolsViewController: UICollectionViewController {
         
         if let icon = cell as? ToolsCellView {
             
-            switch indexPath.row {
+            switch CellIndexes(rawValue: indexPath.row)! {
                
-            case 0:
+            case CellIndexes.refreshStatus:
                 
-                icon.backgroundColor = UIColor.orangeColor()
-                icon.iconTitleLabel.textColor = UIColor.blackColor()
-                icon.iconTitleLabel.text = "Refresh Status"
+                configureIcon(icon,
+                    backgroundColor: UIColor.orangeColor(),
+                    titleColor: UIColor.blackColor(),
+                    text: "Refresh Status")
                 
-            case 1:
+            case CellIndexes.cleanStatus:
                 
-                icon.backgroundColor = UIColor.redColor()
-                icon.iconTitleLabel.textColor = UIColor.blackColor()
-                icon.iconTitleLabel.text = "Clean Status"
+                configureIcon(icon,
+                    backgroundColor: UIColor.redColor(),
+                    titleColor: UIColor.blackColor(),
+                    text: "Clean Status")
                 
-            case 2:
+            case CellIndexes.login:
                 
-                let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
-                if service.hasUser {
+                if userAuthService.hasUser {
                     
-                    icon.backgroundColor = UIColor.blueColor()
-                    icon.iconTitleLabel.textColor = UIColor.whiteColor()
-                    icon.iconTitleLabel.text = "log Out"
+                    configureIcon(icon,
+                        backgroundColor: UIColor.blueColor(),
+                        titleColor: UIColor.whiteColor(),
+                        text: "log Out",
+                        image: avatar)
+                    
+                    if (avatar == nil) {
+                        
+                        beginDownloadAvatar()
+                    }
                     
                 } else {
                     
-                    icon.backgroundColor = UIColor.purpleColor()
-                    icon.iconTitleLabel.textColor = UIColor.whiteColor()
-                    icon.iconTitleLabel.text = "Login"
+                    configureIcon(icon,
+                        backgroundColor: UIColor.purpleColor(),
+                        titleColor: UIColor.whiteColor(),
+                        text: "Login")
                 }
                 
             default:
-                
-                cell.backgroundColor = UIColor.lightGrayColor()
-                icon.iconTitleLabel.textColor = UIColor.blackColor()
+
+                configureIcon(icon,
+                    backgroundColor: UIColor.lightGrayColor(),
+                    titleColor: UIColor.blackColor())
             }
         }
         
@@ -164,13 +178,13 @@ class ToolsViewController: UICollectionViewController {
         
         let service = GHStatusService()
         
-        switch indexPath.row {
+        switch CellIndexes(rawValue: indexPath.row)! {
     
-        case 0:
+        case CellIndexes.refreshStatus:
 
             service.refresh(nil)
             
-        case 1:
+        case CellIndexes.cleanStatus:
 
             do {
                 
@@ -181,12 +195,11 @@ class ToolsViewController: UICollectionViewController {
                 
             }
 
-        case 2:
+        case CellIndexes.login:
 
-            let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
-            if service.hasUser {
+            if userAuthService.hasUser {
              
-                service.logout()
+                userAuthService.logout()
                 self.reloadSection()
                 
             } else {
@@ -254,5 +267,39 @@ class ToolsViewController: UICollectionViewController {
     private func reloadSection() {
         
         self.collectionView!.reloadSections(NSIndexSet(index: 0))
+    }
+    
+    private func beginDownloadAvatar() {
+        
+        let identifier = __FUNCTION__
+        let (session, delegate) = BackgroundSessionDelegate.structuresForIdentifier(identifier)
+        delegate.completion = {(task: NSURLSessionDownloadTask, url: NSURL) in
+            
+            if let data = NSData(contentsOfURL: url) {
+
+                let image = UIImage(data: data)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.avatar = image
+                    self.collectionView!.reloadItemsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)])
+                })
+            }
+        }
+        
+        let url = userAuthService.readUser()!.avatarURL
+        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 30)
+        
+        let task = session.downloadTaskWithRequest(request)
+        
+        print("\(NSDate()) - start \(identifier)")
+        task.resume()
+    }
+    
+    private func configureIcon(icon: ToolsCellView, backgroundColor: UIColor, titleColor: UIColor, text: String? = nil, image: UIImage? = nil) {
+        
+        icon.backgroundColor = backgroundColor
+        icon.iconTitleLabel.textColor = titleColor
+        icon.iconTitleLabel.text = text
+        icon.iconImageView.image = image
     }
 }

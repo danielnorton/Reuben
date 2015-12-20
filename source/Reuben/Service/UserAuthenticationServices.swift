@@ -81,7 +81,7 @@ class UserAuthenticationServices {
         let url = NSURL(string: "https://api.github.com/user")!
         let (session, delegate) = BackgroundSessionDelegate.structuresForUrl(url)
         delegate.completion = {(task: NSURLSessionDownloadTask, url: NSURL) in
-            
+
             if let response = task.response as? NSHTTPURLResponse {
                 
                 if response.statusCode != 200 {
@@ -148,7 +148,7 @@ class UserAuthenticationServices {
                 (json.indexForKey("avatar_url") != nil),
                 let avatarPath = json["avatar_url"] as? String {
                     
-                    return (userName, NSURL(fileURLWithPath: avatarPath))
+                    return (userName, NSURL(string: avatarPath)!)
             }
         } catch { }
         
