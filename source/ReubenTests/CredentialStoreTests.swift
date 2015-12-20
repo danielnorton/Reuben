@@ -6,9 +6,11 @@
 //  Copyright (c) 2015 Daniel Norton. All rights reserved.
 //
 
+
 import UIKit
 import XCTest
 @testable import Reuben
+
 
 class CredentialStoreTests: XCTestCase {
 

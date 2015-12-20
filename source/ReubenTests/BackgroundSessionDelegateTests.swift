@@ -6,9 +6,11 @@
 //  Copyright © 2015 Daniel Norton. All rights reserved.
 //
 
-@testable import Reuben
+
 import UIKit
 import XCTest
+@testable import Reuben
+
 
 class BackgroundSessionDelegateTests: XCTestCase {
 

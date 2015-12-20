@@ -6,8 +6,10 @@
 //  Copyright © 2015 Daniel Norton. All rights reserved.
 //
 
+
 import XCTest
 @testable import Reuben
+
 
 class UserAuthenticationServicesTests: XCTestCase {
     

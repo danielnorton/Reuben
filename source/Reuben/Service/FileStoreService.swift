@@ -10,12 +10,15 @@ import Foundation
 
 class FileStoreService {
     
-    var cache: NSData?
-    let storeName: String
-    let validate: ((NSData) -> Bool)
+    var useCache: Bool = false
+    var fileExtension: String = "data"
+    private(set) var cache: NSData?
+    private let storeName: String
+    private let validate: ((NSData) -> Bool)
     private let store: NSURL
     
-    // MARK: NSObject
+    
+    // MARK: - init
     init(storeName: String, validate: ((data: NSData) -> Bool)) {
         
         self.storeName = storeName
@@ -43,31 +46,42 @@ class FileStoreService {
         }()
     }
     
-    // MARK: public static functions
+    convenience init(storeName: String) {
+        
+        self.init(storeName: storeName) {_ in
+            
+            return true
+        }
+    }
+    
+    // MARK: Public Functions
+    func flushCache() -> NSData? {
+        
+        cache = nil
+        return nil
+    }
+    
     func cleanAndSave(tempFile: NSURL) throws -> Bool {
         
-        if let data = NSData(contentsOfURL: tempFile) {
+        if let data = NSData(contentsOfURL: tempFile) where validate(data) {
+                
+            try clean()
+            try save(tempFile)
             
-            if self.validate(data) {
-                
-                try self.clean()
-                try self.save(tempFile)
-                
-                return true
-                
-            }
+            return true
         }
+        
         return false
     }
     
     func clean() throws {
 
-        cache = nil
+        flushCache()
         let fm = NSFileManager.defaultManager()
         
         do {
             
-            let files = try fm.contentsOfDirectoryAtURL(self.store, includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)
+            let files = try fm.contentsOfDirectoryAtURL(store, includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)
             for file in files {
                 
                 try fm.removeItemAtURL(file)
@@ -77,9 +91,19 @@ class FileStoreService {
     
     func save(tempFile: NSURL) throws -> NSURL {
         
+        return try save(tempFile, validated: false)
+    }
+    
+    private func save(tempFile: NSURL, validated: Bool) throws -> NSURL {
+        
+        if !validated, let data = NSData(contentsOfURL: tempFile) where !validate(data) {
+            
+            return tempFile
+        }
+        
         let fm = NSFileManager.defaultManager()
-        let name = NSUUID().UUIDString
-        let newName = self.store.URLByAppendingPathComponent("\(name).json")
+        let name = NSDate().timeIntervalSince1970// NSUUID().UUIDString
+        let newName = store.URLByAppendingPathComponent("\(name).\(fileExtension)")
 
         if fm.fileExistsAtPath(newName.absoluteString) {
             
@@ -88,8 +112,9 @@ class FileStoreService {
         
         try fm.moveItemAtURL(tempFile, toURL: newName)
         
-        cache = nil
-        cache = read()
+        cache = useCache
+        ? read()
+        : flushCache()
         
         return newName
     }
@@ -105,8 +130,7 @@ class FileStoreService {
         
         do {
             
-            let files = try fm.contentsOfDirectoryAtURL(self.store, includingPropertiesForKeys: [NSURLContentModificationDateKey], options: .SkipsSubdirectoryDescendants)
-            
+            let files = try fm.contentsOfDirectoryAtURL(store, includingPropertiesForKeys: [NSURLContentModificationDateKey], options: .SkipsSubdirectoryDescendants)
             let fileProps = files.sort({ (first, second) -> Bool in
                 
                 do {
@@ -129,9 +153,12 @@ class FileStoreService {
             })
             
             if let file = fileProps.last,
-            let data = NSData(contentsOfURL: file)
-            where self.validate(data)
-            {
+            let data = NSData(contentsOfURL: file) where validate(data) {
+
+                cache = useCache
+                ? data
+                : flushCache()
+                
                 return data
             }
             

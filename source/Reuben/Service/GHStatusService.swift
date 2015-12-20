@@ -87,9 +87,9 @@ class GHStatusService {
         return try storeService.cleanAndSave(tempFile)
     }
     
-    func clearCache() {
+    func flushCache() {
         
-        storeService.cache = nil
+        storeService.flushCache()
     }
     
     func read() -> (status: String, lastUpdated: NSDate)? {
