@@ -152,10 +152,10 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ka1-yc-x8y" userLabel="Text Wrapper">
                                                         <rect key="frame" x="8" y="8" width="568" height="56"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="github user name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k7c-nU-5eT">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="github user name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="k7c-nU-5eT">
                                                                 <rect key="frame" x="8" y="8" width="552" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="Hze-Dt-L3p" id="uJ6-2i-awH"/>
                                                                 </connections>
@@ -173,10 +173,10 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOg-fR-4B1" userLabel="Text Wrapper">
                                                         <rect key="frame" x="8" y="72" width="568" height="56"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="github password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y7J-UE-wtM">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="github password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Y7J-UE-wtM">
                                                                 <rect key="frame" x="8" y="8" width="552" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="Hze-Dt-L3p" id="r8x-Ct-FWC"/>
                                                                 </connections>

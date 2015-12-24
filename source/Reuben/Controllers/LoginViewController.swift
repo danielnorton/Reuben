@@ -48,6 +48,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.setControlState(.Ready)
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        switch textField {
+            
+        case userNameTextField:
+
+            passwordTextField.becomeFirstResponder()
+            
+        case passwordTextField:
+            
+            submit()
+            
+        default: break
+        }
+        
+        return true
+    }
+    
     // MARK: -
     // MARK: LoginViewController
     // MARK: IBActions
@@ -64,9 +84,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func didTapSubmit(sender: UIButton) {
         
-        self.setControlState(.Waiting)
-        let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
-        service.login(userNameTextField.text!, password: passwordTextField.text!)
+        submit()
     }
     
     
@@ -107,6 +125,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.passwordTextField.attributedPlaceholder = NSAttributedString(string: message, attributes: attributes)
             self.passwordTextField.text = nil
         }
+    }
+    
+    private func submit() {
+    
+        self.setControlState(.Waiting)
+        let service = UserAuthenticationServices(UserAuthenticationServices.defaultServiceName)
+        service.login(userNameTextField.text!, password: passwordTextField.text!)
     }
     
     private func resetPasswordPlaceholder() {
