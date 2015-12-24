@@ -77,6 +77,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    @IBAction func didTapSeePassword(sender: UIButton) {
+    
+        passwordTextField.secureTextEntry = !passwordTextField.secureTextEntry
+        passwordTextField.font = userNameTextField.font
+    }
+    
     @IBAction func didTapCancel(sender: UITapGestureRecognizer) {
     
         self.leave()

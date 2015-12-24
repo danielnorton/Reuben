@@ -174,22 +174,42 @@
                                                         <rect key="frame" x="8" y="72" width="568" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="github password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Y7J-UE-wtM">
-                                                                <rect key="frame" x="8" y="8" width="552" height="40"/>
+                                                                <rect key="frame" x="8" y="8" width="522" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="Hze-Dt-L3p" id="r8x-Ct-FWC"/>
                                                                 </connections>
                                                             </textField>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQS-RU-D8H">
+                                                                <rect key="frame" x="530" y="8" width="30" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="30" id="pFe-sB-CsM"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                <state key="normal" title="⚇"/>
+                                                                <connections>
+                                                                    <action selector="didTapSeePassword:" destination="Hze-Dt-L3p" eventType="touchUpInside" id="bkb-UV-ogM"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="Y7J-UE-wtM" firstAttribute="bottom" secondItem="LOg-fR-4B1" secondAttribute="bottomMargin" id="1di-0M-dBI"/>
+                                                            <constraint firstAttribute="bottom" secondItem="aQS-RU-D8H" secondAttribute="bottom" constant="8" id="1tq-TF-Hn8"/>
+                                                            <constraint firstItem="aQS-RU-D8H" firstAttribute="top" secondItem="LOg-fR-4B1" secondAttribute="top" constant="8" id="Ms0-8G-yDW"/>
+                                                            <constraint firstAttribute="trailing" secondItem="aQS-RU-D8H" secondAttribute="trailing" constant="8" id="XPt-Vs-iPo"/>
+                                                            <constraint firstItem="aQS-RU-D8H" firstAttribute="leading" secondItem="Y7J-UE-wtM" secondAttribute="trailing" id="csV-EK-cEU"/>
                                                             <constraint firstItem="Y7J-UE-wtM" firstAttribute="top" secondItem="LOg-fR-4B1" secondAttribute="topMargin" id="jP4-bq-cv9"/>
                                                             <constraint firstItem="Y7J-UE-wtM" firstAttribute="leading" secondItem="LOg-fR-4B1" secondAttribute="leadingMargin" id="lYf-fa-8ny"/>
                                                             <constraint firstItem="Y7J-UE-wtM" firstAttribute="trailing" secondItem="LOg-fR-4B1" secondAttribute="trailingMargin" id="onQ-Fd-xFj"/>
                                                             <constraint firstAttribute="height" constant="56" id="vlv-IB-Mdh"/>
                                                         </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="onQ-Fd-xFj"/>
+                                                            </mask>
+                                                        </variation>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tB6-HQ-ssx">
                                                         <rect key="frame" x="192" y="136" width="200" height="50"/>
